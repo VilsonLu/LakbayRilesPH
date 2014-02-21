@@ -10,5 +10,10 @@ namespace LakbayRilesPH
         public static string GreetUser(string name){
             return "Welcome " + name;
         }
+
+        public static int validateUser(String name, String password)
+        {
+            return 0;
+        }
     }
 }
