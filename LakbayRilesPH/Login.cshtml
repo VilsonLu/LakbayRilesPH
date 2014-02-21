@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+    @using LakbayRilesPH
+    @{
+        var greeting="";
+        if (IsPost) { 
+            greeting = Login.GreetUser(Request["username"]);
+        }
+    }
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h1> @greeting </h1>
+        <form action="~/Home.cshtml" method="post" name="login">
+            <label for="username">Username:</label>
+            <input type="text" name="username" />
+            <input type="submit" value="Submit" />
+        </form>
+    </body>
+</html>
