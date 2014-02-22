@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+
+    @using WebMatrix.Data
+    @using LakbayRilesPH
+    @{
+  
+        Validation.RequireField("username", "Username is required");
+        Validation.RequireField("password", "Password is required");
+        if (IsPost)
+        {
+            var username = Request["username"];
+            var password = Request["password"];
+            if (Validation.IsValid())
+            {
+                var account = Login.ValidateUser(username,password);
+                if (account != null) {
+                     <text>
+                      You entered: <br />
+                      Username: @account.Username
+                      Name: @account.FirstName @account.LastName
+                    </text>
+                }
+            }
+        }
+    }
+
+    <head>
+        <title></title>
+        <link href="~/Content/ErrorMessages.css" rel="stylesheet" />
+        <script src="~/Scripts/jquery.validate.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    </head>
+    <body>
+        <form method="post" name="login" action="">
+            <label for="username">Username:</label>
+            <input type="text" name="username" />
+            @Html.ValidationMessage("username")
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" />
+            @Html.ValidationMessage("password")
+           <input type="submit" value="Submit" />
+           
+        </form>
+    </body>
+</html>
