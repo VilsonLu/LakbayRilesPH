@@ -3,16 +3,18 @@
 @using LakbayRilesPH;
 @{
     var value = false;
-    if (Request["cc"] == "CC-ON") { 
-       value = Admin.UpdateDatabase(1);
-    }
+    if (IsPost) { 
+        if (Request["cc"] == "CC-ON") { 
+           value = Admin.UpdateDatabase(1);
+        }
 
-    if (value)
-    {
-        <text>
-            Yeaaah!
-        </text>
-    }    
+        if (value)
+        {
+            <text>
+                Yeaaah!
+            </text>
+        }    
+    }
         
 }
 
@@ -30,7 +32,7 @@
     <div>
         <div class="northbound">
             <div>
-                <form>
+                <form method="post">
                     <input type="Submit" name ="cc" class="crowdcontrol" value="CC-ON"/>
                     <input type="Submit" name ="cc" class="crowdcontrol" value="CC-OFF"/>
                 </form>
