@@ -13,6 +13,19 @@
             value = Admin.UpdateDatabase(5);
         }
 
+        if (Request["cv2"] == "Red")
+        {
+            value = Admin.UpdateDatabase(1);
+        }
+        else if (Request["cv2"] == "Yellow")
+        {
+            value = Admin.UpdateDatabase(2);
+        }
+        else
+        {
+            value = Admin.UpdateDatabase(3);
+        }
+
         if (value)
         {
             <text>
@@ -43,10 +56,10 @@
                 </form>
             </div>
             <div>
-                <form>
-                    <input type="Submit" class="crowdvolume" id="red" value="Red"/>
-                    <input type="Submit" class="crowdvolume" id="yellow" value="Yellow"/>
-                    <input type="Submit" class="crowdvolume" id="green" value="Green"/>
+                <form method="post" name="cv2">
+                    <input type="Submit" name ="cv" class="crowdvolume" id="red" value="Red"/>
+                    <input type="Submit" name ="cv"class="crowdvolume" id="yellow" value="Yellow"/>
+                    <input type="Submit" name ="cv"class="crowdvolume" id="green" value="Green"/>
                 </form>
             </div>
           </div>
