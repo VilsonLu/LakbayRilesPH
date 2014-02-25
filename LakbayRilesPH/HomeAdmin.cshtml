@@ -1,7 +1,20 @@
-﻿@{
-    var user = Request["username"];
+﻿<!DOCTYPE html>
+
+@using LakbayRilesPH;
+@{
+    var value = false;
+    if (Request["cc"] == "CC-ON") { 
+       value = Admin.UpdateDatabase(1);
+    }
+
+    if (value)
+    {
+        <text>
+            Yeaaah!
+        </text>
+    }    
+        
 }
-<!DOCTYPE html>
 
 <html>
 <head>
@@ -12,10 +25,24 @@
 <body>
     <nav class="navbar navbar-default navbar-static-top">
         <h1>LakbayRiles</h1>
-        <h1>Request[]</h1>
+       
     </nav>
     <div>
-     
+        <div class="northbound">
+            <div>
+                <form>
+                    <input type="Submit" name ="cc" class="crowdcontrol" value="CC-ON"/>
+                    <input type="Submit" name ="cc" class="crowdcontrol" value="CC-OFF"/>
+                </form>
+            </div>
+            <div>
+                <form>
+                    <input type="Submit" class="crowdvolume" id="red" value="Red"/>
+                    <input type="Submit" class="crowdvolume" id="yellow" value="Yellow"/>
+                    <input type="Submit" class="crowdvolume" id="green" value="Green"/>
+                </form>
+            </div>
+          </div>
     </div>
 </body>
 </html>

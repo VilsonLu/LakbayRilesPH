@@ -1,7 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
 
-    @using WebMatrix.Data
     @using LakbayRilesPH
     @{
   
@@ -15,10 +14,9 @@
             {
                 var account = Login.ValidateUser(username,password);
                 if (account != null) {
-                     <text>
-                      You entered: <br />
-                      Username: @account.Username
-                      Name: @account.FirstName @account.LastName
+                    <text>
+                        Name: @account.FirstName + @account.LastName <br />
+                        Username: @account.Username;<br />
                     </text>
                 }
             }
