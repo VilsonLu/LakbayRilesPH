@@ -4,8 +4,13 @@
 @{
     var value = false;
     if (IsPost) { 
+        
         if (Request["cc"] == "CC-ON") { 
-           value = Admin.UpdateDatabase(1);
+           value = Admin.UpdateDatabase(4);
+        }
+        else
+        {
+            value = Admin.UpdateDatabase(5);
         }
 
         if (value)
