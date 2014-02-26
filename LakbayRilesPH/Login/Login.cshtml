@@ -6,19 +6,19 @@
   
         Validation.RequireField("username", "Username is required");
         Validation.RequireField("password", "Password is required");
+        var test = "";
         if (IsPost)
         {
             var username = Request["username"];
             var password = Request["password"];
+            Session["firstname"] = "hello";
             if (Validation.IsValid())
             {
-                var account = Login.ValidateUser(username,password);
-                if (account != null) {
-                    <text>
-                        Name: @account.FirstName + @account.LastName <br />
-                        Username: @account.Username;<br />
-                    </text>
-                }
+                var login = new LakbayRilesPH.Login.Login();
+                var account = login.ValidateUser(username,password);
+                
+                test = (string) Session["firstname"];
+               
             }
         }
     }
@@ -31,16 +31,21 @@
         <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     </head>
     <body>
-        <form method="post" name="login" action="">
+        <form method="post" name="login" action="~/HomeAdmin.cshtml">
             <label for="username">Username:</label>
-            <input type="text" name="username" />
+            <input type="text" name="username" value="@Request["username"]"/>
             @Html.ValidationMessage("username")
 
             <label for="password">Password:</label>
-            <input type="password" name="password" />
+            <input type="password" name="password" value="@Request["password"]" />
             @Html.ValidationMessage("password")
            <input type="submit" value="Submit" />
            
         </form>
+        @if (IsPost) { 
+            <text>
+                @test
+            </text>
+        }
     </body>
 </html>
