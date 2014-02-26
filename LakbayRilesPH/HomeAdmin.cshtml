@@ -3,35 +3,55 @@
 @using LakbayRilesPH;
 @{
     var value = false;
+    var account = (string) Session["firstname"];
+
+  
     if (IsPost) { 
         
-        if (Request["cc"] == "CC-ON") { 
-           value = Admin.UpdateDatabase(4);
+        if (Request["cc-n"] == "CC-ON") { 
+           value = Admin.UpdateDatabase(4, "north");
         }
         else
         {
-            value = Admin.UpdateDatabase(5);
+            value = Admin.UpdateDatabase(5, "north");
         }
 
-        if (Request["cv2"] == "Red")
+        if (Request["cv-n"] == "Red")
         {
-            value = Admin.UpdateDatabase(1);
+            value = Admin.UpdateDatabase(1, "north");
         }
-        else if (Request["cv2"] == "Yellow")
+        else if (Request["cv-n"] == "Yellow")
         {
-            value = Admin.UpdateDatabase(2);
+            value = Admin.UpdateDatabase(2, "north");
         }
         else
         {
-            value = Admin.UpdateDatabase(3);
+            value = Admin.UpdateDatabase(3, "north");
         }
 
-        if (value)
+        if (Request["cc-s"] == "CC-ON")
         {
-            <text>
-                Yeaaah!
-            </text>
-        }    
+            value = Admin.UpdateDatabase(4, "south");
+        }
+        else
+        {
+            value = Admin.UpdateDatabase(5, "south");
+        }
+
+
+        if (Request["cv-s"] == "Red")
+        {
+            value = Admin.UpdateDatabase(1, "south");
+        }
+        else if (Request["cv-s"] == "Yellow")
+        {
+            value = Admin.UpdateDatabase(2, "south");
+        }
+        else
+        {
+            value = Admin.UpdateDatabase(3, "south");
+        }
+        
     }
         
 }
@@ -45,24 +65,42 @@
 <body>
     <nav class="navbar navbar-default navbar-static-top">
         <h1>LakbayRiles</h1>
-       
+        <h2>
+            @account
+        </h2>
     </nav>
     <div>
         <div class="northbound">
             <div>
-                <form method="post">
+                <form method="post" name="cc-n">
                     <input type="Submit" name ="cc" class="crowdcontrol" value="CC-ON"/>
                     <input type="Submit" name ="cc" class="crowdcontrol" value="CC-OFF"/>
                 </form>
             </div>
             <div>
-                <form method="post" name="cv2">
+                <form method="post" name="cv-n">
                     <input type="Submit" name ="cv" class="crowdvolume" id="red" value="Red"/>
                     <input type="Submit" name ="cv"class="crowdvolume" id="yellow" value="Yellow"/>
                     <input type="Submit" name ="cv"class="crowdvolume" id="green" value="Green"/>
                 </form>
             </div>
           </div>
+
+        <div class="southbound">
+            <div>
+                <form method="post" name="cc-n">
+                    <input type="Submit" name="cc-s" class="crowdcontrol" value="CC-ON" />
+                    <input type="Submit" name="cc-s" class="crowdcontrol" value="CC-OFF" />
+                </form>
+            </div>
+            <div>
+                <form method="post" name="cv-s">
+                    <input type="Submit" name="cv" class="crowdvolume" id="red" value="Red" />
+                    <input type="Submit" name="cv" class="crowdvolume" id="yellow" value="Yellow" />
+                    <input type="Submit" name="cv" class="crowdvolume" id="green" value="Green" />
+                </form>
+            </div>
+        </div>
     </div>
 </body>
 </html>
