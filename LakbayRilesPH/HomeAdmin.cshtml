@@ -1,11 +1,21 @@
 ﻿<!DOCTYPE html>
 
 @using LakbayRilesPH;
+@using WebMatrix.Data;
 @{
     var value = false;
-    var account = (string) Session["firstname"];
-
-  
+    
+    <!-- After the login has been implemented, this will be removed-->
+    var db = Database.Open("SQLAzureConnection");
+    var query = db.QuerySingle("SELECT FirstName, LastName FROM Staff WHERE UserID = 1");
+    var staff = new Staff();
+    staff.FirstName = query["FirstName"];
+    staff.LastName = query["LastName"];
+    staff.UserID = 1;
+    query = db.QuerySingle("SELECT StationName FROM Station WHERE Supervisor = " + staff.UserID);
+    var stationName = query["StationName"];
+    <!---------------------------------------------------------------->
+      
     if (IsPost) { 
         
         if (Request["cc-n"] == "CC-ON") { 
@@ -66,7 +76,10 @@
     <nav class="navbar navbar-default navbar-static-top">
         <h1>LakbayRiles</h1>
         <h2>
-            @account
+            Train Supervisor: @staff.FirstName @staff.LastName
+        </h2>
+        <h2>
+            Station Assigned: @stationName
         </h2>
     </nav>
     <div>
