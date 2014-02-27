@@ -3,65 +3,59 @@
 @using LakbayRilesPH;
 @using WebMatrix.Data;
 @{
+    
     var value = false;
     
     <!-- After the login has been implemented, this will be removed-->
     var db = Database.Open("SQLAzureConnection");
-    var query = db.QuerySingle("SELECT FirstName, LastName FROM Staff WHERE UserID = 1");
+    var id = 12;
+    var query = db.QuerySingle("SELECT FirstName, LastName FROM Staff WHERE UserID = " + id);
     var staff = new Staff();
     staff.FirstName = query["FirstName"];
     staff.LastName = query["LastName"];
-    staff.UserID = 1;
+    staff.UserID = id;
     query = db.QuerySingle("SELECT StationName FROM Station WHERE Supervisor = " + staff.UserID);
     var stationName = query["StationName"];
     <!---------------------------------------------------------------->
       
+    var status ="";
     if (IsPost) { 
         
-        if (Request["cc-n"] == "CC-ON") { 
-           value = Admin.UpdateDatabase(4, "north");
-        }
-        else
-        {
-            value = Admin.UpdateDatabase(5, "north");
-        }
-
-        if (Request["cv-n"] == "Red")
-        {
-            value = Admin.UpdateDatabase(1, "north");
-        }
-        else if (Request["cv-n"] == "Yellow")
-        {
-            value = Admin.UpdateDatabase(2, "north");
-        }
-        else
-        {
-            value = Admin.UpdateDatabase(3, "north");
+        var ccn = Request.Params["cc-n"];
+        if(ccn == "CC-ON"){
+            Admin.UpdateDatabase(4, "north", staff.UserID);
+        } else if(ccn == "CC-OFF"){
+            Admin.UpdateDatabase(5, "north", staff.UserID);
         }
 
-        if (Request["cc-s"] == "CC-ON")
-        {
-            value = Admin.UpdateDatabase(4, "south");
+        var cvn = Request.Params["cv-n"];
+        if(cvn == "Red"){
+            Admin.UpdateDatabase(1, "north", staff.UserID);
+        } else if(cvn == "Yellow"){
+            Admin.UpdateDatabase(2, "north", staff.UserID);    
+        } else if(cvn == "Green") {
+            Admin.UpdateDatabase(3, "north", staff.UserID);
         }
-        else
-        {
-            value = Admin.UpdateDatabase(5, "south");
+        var ccs = Request.Params["cc-s"];
+        if(ccs == "CC-ON"){
+            Admin.UpdateDatabase(4, "south", staff.UserID);
+        } else if(ccn == "CC-OFF"){
+            Admin.UpdateDatabase(5, "south", staff.UserID);
+        }
+
+        var cvs = Request.Params["cv-s"];
+        if(cvs == "Red"){
+            Admin.UpdateDatabase(1, "south", staff.UserID);
+        } else if(cvs == "Yellow"){
+            Admin.UpdateDatabase(2, "south", staff.UserID);    
+        } else if(cvs == "Green") {
+            Admin.UpdateDatabase(3, "south", staff.UserID);
         }
 
 
-        if (Request["cv-s"] == "Red")
-        {
-            value = Admin.UpdateDatabase(1, "south");
-        }
-        else if (Request["cv-s"] == "Yellow")
-        {
-            value = Admin.UpdateDatabase(2, "south");
-        }
-        else
-        {
-            value = Admin.UpdateDatabase(3, "south");
-        }
-        
+        <script>
+                alert(ccn);
+        </script>
     }
         
 }
@@ -71,6 +65,7 @@
     <meta name="viewport" content="width=device-width" />
     <title></title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/js/alertStatus.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-default navbar-static-top">
@@ -85,32 +80,32 @@
     <div>
         <div class="northbound">
             <div>
-                <form method="post" name="cc-n">
-                    <input type="Submit" name ="cc" class="crowdcontrol" value="CC-ON"/>
-                    <input type="Submit" name ="cc" class="crowdcontrol" value="CC-OFF"/>
+                <form method="post">
+                    <input type="Submit" name ="cc-n" class="crowdcontrol" value="CC-ON"/>
+                    <input type="Submit" name ="cc-n" class="crowdcontrol" value="CC-OFF"/>
                 </form>
             </div>
             <div>
                 <form method="post" name="cv-n">
-                    <input type="Submit" name ="cv" class="crowdvolume" id="red" value="Red"/>
-                    <input type="Submit" name ="cv"class="crowdvolume" id="yellow" value="Yellow"/>
-                    <input type="Submit" name ="cv"class="crowdvolume" id="green" value="Green"/>
+                    <input type="Submit" name ="cv-n" class="crowdvolume" id="red" value="Red"/>
+                    <input type="Submit" name ="cv-n" class="crowdvolume" id="yellow" value="Yellow"/>
+                    <input type="Submit" name ="cv-n" class="crowdvolume" id="green" value="Green"/>
                 </form>
             </div>
           </div>
 
         <div class="southbound">
             <div>
-                <form method="post" name="cc-n">
+                <form method="post">
                     <input type="Submit" name="cc-s" class="crowdcontrol" value="CC-ON" />
                     <input type="Submit" name="cc-s" class="crowdcontrol" value="CC-OFF" />
                 </form>
             </div>
             <div>
-                <form method="post" name="cv-s">
-                    <input type="Submit" name="cv" class="crowdvolume" id="red" value="Red" />
-                    <input type="Submit" name="cv" class="crowdvolume" id="yellow" value="Yellow" />
-                    <input type="Submit" name="cv" class="crowdvolume" id="green" value="Green" />
+                <form method="post">
+                    <input type="Submit" name="cv-s" class="crowdvolume" id="red" value="Red" />
+                    <input type="Submit" name="cv-s" class="crowdvolume" id="yellow" value="Yellow" />
+                    <input type="Submit" name="cv-s" class="crowdvolume" id="green" value="Green" />
                 </form>
             </div>
         </div>
