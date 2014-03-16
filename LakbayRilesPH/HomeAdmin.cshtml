@@ -78,34 +78,46 @@
         </h2>
     </nav>
     <div>
-        <div class="northbound">
-            <div>
-                <form method="post">
-                    <input type="Submit" name ="cc-n" class="crowdcontrol" value="CC-ON"/>
-                    <input type="Submit" name ="cc-n" class="crowdcontrol" value="CC-OFF"/>
-                </form>
-            </div>
-            <div>
-                <form method="post" name="cv-n">
-                    <input type="Submit" name ="cv-n" class="crowdvolume" id="red" value="Red"/>
-                    <input type="Submit" name ="cv-n" class="crowdvolume" id="yellow" value="Yellow"/>
-                    <input type="Submit" name ="cv-n" class="crowdvolume" id="green" value="Green"/>
-                </form>
-            </div>
-          </div>
+        <div id="nbdiv" class="northbound">
+            <h3><em>NORTHBOUND CONTROLS</em></h3>
 
-        <div class="southbound">
             <div>
+                <h4>Crowd Control Toggles:</h4>
                 <form method="post">
-                    <input type="Submit" name="cc-s" class="crowdcontrol" value="CC-ON" />
-                    <input type="Submit" name="cc-s" class="crowdcontrol" value="CC-OFF" />
+                    <input type="Submit" name="cc-n" class="crowdcontrol" value="Crowd Control: ON" />
+                    <input type="Submit" name="cc-n" class="crowdcontrol" value="Crowd Control: OFF" />
                 </form>
             </div>
+
             <div>
+                <h4>Crowd Volume Toggles:</h4>
                 <form method="post">
-                    <input type="Submit" name="cv-s" class="crowdvolume" id="red" value="Red" />
-                    <input type="Submit" name="cv-s" class="crowdvolume" id="yellow" value="Yellow" />
-                    <input type="Submit" name="cv-s" class="crowdvolume" id="green" value="Green" />
+                    <input type="Submit" name="cv-n" class="crowdvolume" id="red" value="Heavy" />
+                    <input type="Submit" name="cv-n" class="crowdvolume" id="yellow" value="Moderate" />
+                    <input type="Submit" name="cv-n" class="crowdvolume" id="green" value="Light" />
+                </form>
+            </div>
+        </div>
+
+        <br />
+
+        <div id="sbdiv" class="southbound">
+            <h3><em>SOUTHBOUND CONTROLS</em></h3>
+
+            <div>
+                <h4>Crowd Control Toggles:</h4>
+                <form method="post">
+                    <input type="Submit" name="cc-s" class="crowdcontrol" value="Crowd Control: ON" />
+                    <input type="Submit" name="cc-s" class="crowdcontrol" value="Crowd Control: OFF" />
+                </form>
+            </div>
+
+            <div>
+                <h4>Crowd Volume Toggles:</h4>
+                <form method="post">
+                    <input type="Submit" name="cv-s" class="crowdvolume" id="red" value="Heavy" />
+                    <input type="Submit" name="cv-s" class="crowdvolume" id="yellow" value="Moderate" />
+                    <input type="Submit" name="cv-s" class="crowdvolume" id="green" value="Light" />
                 </form>
             </div>
         </div>
