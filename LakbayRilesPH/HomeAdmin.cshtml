@@ -8,54 +8,50 @@
     
     <!-- After the login has been implemented, this will be removed-->
     var db = Database.Open("SQLAzureConnection");
-    var id = 12;
-    var query = db.QuerySingle("SELECT FirstName, LastName FROM Staff WHERE UserID = " + id);
-    var staff = new Staff();
-    staff.FirstName = query["FirstName"];
-    staff.LastName = query["LastName"];
-    staff.UserID = id;
-    query = db.QuerySingle("SELECT StationName FROM Station WHERE Supervisor = " + staff.UserID);
+    var staff = (Staff)Session["user"];
+    var query = db.QuerySingle("SELECT StationID, StationName FROM Station WHERE Supervisor = " + staff.UserID);
     var stationName = query["StationName"];
+    var stationID = query["StationID"];
     <!---------------------------------------------------------------->
       
     var status ="";
     if (IsPost) { 
         
         var ccn = Request.Params["cc-n"];
-        if(ccn == "CC-ON"){
-            Admin.UpdateDatabase(4, "north", staff.UserID);
-        } else if(ccn == "CC-OFF"){
-            Admin.UpdateDatabase(5, "north", staff.UserID);
+        if (ccn == "Crowd Control: ON") { 
+            Admin.UpdateDatabase(4, "north", stationID);
+        }
+        else if (ccn == "Crowd Control: OFF")
+        {
+            Admin.UpdateDatabase(5, "north", stationID);
         }
 
         var cvn = Request.Params["cv-n"];
-        if(cvn == "Red"){
-            Admin.UpdateDatabase(1, "north", staff.UserID);
-        } else if(cvn == "Yellow"){
-            Admin.UpdateDatabase(2, "north", staff.UserID);    
-        } else if(cvn == "Green") {
-            Admin.UpdateDatabase(3, "north", staff.UserID);
+        if(cvn == "Heavy"){
+            Admin.UpdateDatabase(1, "north", stationID);
+        } else if(cvn == "Moderate"){
+            Admin.UpdateDatabase(2, "north", stationID);    
+        } else if(cvn == "Light") {
+            Admin.UpdateDatabase(3, "north", stationID);
         }
         var ccs = Request.Params["cc-s"];
-        if(ccs == "CC-ON"){
-            Admin.UpdateDatabase(4, "south", staff.UserID);
-        } else if(ccn == "CC-OFF"){
-            Admin.UpdateDatabase(5, "south", staff.UserID);
+        if (ccs == "Crowd Control: ON")
+        {
+            Admin.UpdateDatabase(4, "south", stationID);
+        }
+        else if (ccn == "Crowd Control: OFF")
+        {
+            Admin.UpdateDatabase(5, "south", stationID);
         }
 
         var cvs = Request.Params["cv-s"];
-        if(cvs == "Red"){
-            Admin.UpdateDatabase(1, "south", staff.UserID);
-        } else if(cvs == "Yellow"){
-            Admin.UpdateDatabase(2, "south", staff.UserID);    
-        } else if(cvs == "Green") {
-            Admin.UpdateDatabase(3, "south", staff.UserID);
+        if(cvs == "Heavy"){
+            Admin.UpdateDatabase(1, "south", stationID);
+        } else if(cvs == "Moderate"){
+            Admin.UpdateDatabase(2, "south", stationID);    
+        } else if(cvs == "Light") {
+            Admin.UpdateDatabase(3, "south", stationID);
         }
-
-
-        <script>
-                alert(ccn);
-        </script>
     }
         
 }

@@ -1,0 +1,86 @@
+﻿@using LakbayRilesPH.Controller;
+
+
+
+@{
+
+    Validation.RequireField("username", "Username is required.");
+    Validation.RequireField("password", "Password is required.");
+    var flag = false;
+    var message = "The username and password did not match."; // invalid username/password
+    if (IsPost)
+    {
+        if (Validation.IsValid())
+        {
+            var username = Request["username"];
+            var password = Request["password"];
+            var user = Login.VerifyCredentials(username, password);
+
+            if (user != null)
+            {
+                Session["user"] = user; //this is how I passed data from one page to the other
+                Response.Redirect("~/HomeAdmin.cshtml");
+            }
+            else
+            {
+                flag = true;
+            }
+        }
+    }
+}
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>AnimoBuzz</title>
+
+        <link href="~/css/bootstrap.css" rel="stylesheet" />
+        <script src="~/Scripts/bootstrap.js"></script>
+        <script src="~/Scripts/jquery-2.1.0.js"></script>
+        <script src="~/Scripts/jquery.validate.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+        <link href="~/css/stylesheet.css" rel="stylesheet" />
+        <link href="~/css/mobile.css" rel="stylesheet" />
+        <link rel="shortcut icon" href="~images/favicon.ico">
+        <script>
+            function redirect(url) {
+                location.href = url;
+            }
+        </script>
+    </head>
+    <body>
+        
+        <div class="container">
+            <h1> Animo.Buzz </h1>
+            <div class="form well">
+                <h2> Login </h2>
+                
+                @if (flag) { 
+                    <span class="error-message">
+                       @message
+                    </span>
+                }
+                
+                <form method="POST" id="loginform" name="login" class="bs-example">
+                    <div class="form-group">
+                        <label class="control-label" for="username">Username</label>
+                        @Html.TextBox("username", Request["username"], new { @class = "form-control", @placeholder="Username"})
+                        @Html.ValidationMessage("username", new { @class = "control-label pull-right" })
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="password">Password</label>
+                        @Html.Password("password", Request["password"], new { @class = "form-control", @placeholder="Password" })
+                        @Html.ValidationMessage("password", new { @class = "control-label pull-right" })
+                    </div>
+                    <br />
+    
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary pull-right" value="Login" />
+                        <button type="button" class="btn btn-link pull-right" onclick="redirect('/View/Registration.cshtml')">New User?</button>
+                    </div>
+                    <br />
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
