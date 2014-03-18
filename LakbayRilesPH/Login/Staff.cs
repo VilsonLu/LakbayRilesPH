@@ -7,9 +7,10 @@ namespace LakbayRilesPH
 {
     public class Staff
     {
-        public int UserID { get; set; }
+        public int StaffID { get; set; }
         public string Username { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public int StationHandle { get; set; }
     }
 }

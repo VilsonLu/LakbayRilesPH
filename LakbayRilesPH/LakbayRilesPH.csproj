@@ -110,6 +110,7 @@
     <Content Include="css\demo.css" />
     <Content Include="css\docs.css" />
     <Content Include="css\flat-ui.css" />
+    <Content Include="css\login.css" />
     <Content Include="css\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="images\gg.png" />
@@ -160,13 +161,14 @@
     <Content Include="Index.cshtml" />
     <Content Include="HomeAdmin.cshtml" />
     <Content Include="Login.cshtml" />
-    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <None Include="Properties\PublishProfiles\lakbayrilesph.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap.validate.js" />
-    <Content Include="Scripts\jquery-1.9.1.js" />
-    <Content Include="Scripts\jquery-1.9.1.min.js" />
-    <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <None Include="Scripts\jquery-2.1.0.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.0.js" />
+    <Content Include="Scripts\jquery-2.1.0.min.js" />
+    <Content Include="Scripts\jquery-2.1.0.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -190,7 +192,6 @@
     <Compile Include="Admin.cs" />
     <Compile Include="Controller\Login.cs" />
     <Compile Include="Login\Account.cs" />
-    <Compile Include="Login\Login.cs" />
     <Compile Include="Login\Staff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

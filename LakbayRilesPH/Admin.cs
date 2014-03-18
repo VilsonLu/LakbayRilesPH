@@ -16,7 +16,7 @@ namespace LakbayRilesPH
         private static Boolean query(int status, string direction, int id)
         {
             var db = Database.Open("SQLAzureConnection");
-            var updateQuery = "INSERT INTO StationStatus (CodeID, StationID, Direction, Timestamp) VALUES (@0, @1, @2, @3) ";
+            var updateQuery = "INSERT INTO StationStatus (Status, Supervisor, Direction, StatusTime) VALUES (@0, @1, @2, @3) ";
             var time = DateTime.Now;
             var sqlFormattedDate = time.ToString("yyyy-MM-dd HH:mm:ss");
             // Don't forget to change these once the login module has been created.
