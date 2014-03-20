@@ -1,21 +1,27 @@
 ﻿<!DOCTYPE html>
+
+@using LakbayRilesPH;
+@using LakbayRilesPH.Controller;
+
 @{
     var currentTime = DateTime.Now;
 }
+
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>Lakbay Riles</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <link href="Content/bootstrap.css" rel="stylesheet">
 
-    <link href="~/css/flat-ui.css" rel="stylesheet">
-    <link href="~/css/home.css" rel="stylesheet" />
+    <link href="css/flat-ui.css" rel="stylesheet">
+
     <link rel="shortcut icon" href="images/favicon.ico">
-   
 
 </head>
+
 <body>
     <nav class="navbar navbar-default" role="navigation">
         <!--HELLO-->
@@ -27,339 +33,38 @@
     <div class="container" style="height: 591px;">
         <div class="map">
             <img class="map-photo" src="images/newbackbone.png" style="z-index:1;">
+
             @{
-                for (int i = 0; i < 20; i++)
+                var stationList = StationList.createStations();
+
+                for (int i = 0; i < stationList.Count; i++)
                 {
-                    var station = "statusModal" + i;
-                    <a href=@station></a>
+                    var station = stationList.ElementAt(i);
+                    var stationName = "statusModal" + station.idName;
+                    <!--BG POSITION-->
+                    <a href="#@stationName" class="status" style="top: @station.top; left: @station.left; background-position: -23px -1px;"></a>
+
+                    <div id="@stationName" class="mainModalDiv">
+                        <div class="statusModalDiv">
+                            <center>
+                                <a href="#close" title="Close" class="close">X</a>
+                                <h3 style="border:medium solid; border-radius: 6px;">@station.stationName</h3>
+                                <div class="innerDiv">
+                                    <!--COLOR AND TEXT-->
+                                    <div class="innerDiv2" style="background-color:#c0392b; color:#FFF">Southbound: H</div>
+                                    <div class="innerDiv2" style="background-color:#f39c12; color:#FFF">Northbound: M</div>
+                                    <br>
+                                    <br>
+                                    <!--TIME FROM DATABSE-->
+                                    <p>As of @currentTime</p>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
                 }
             }
-            @*<a href="#statusModalBaclaran" class="status" style="	top: 505px; left: 63px;"></a>
-            <a href="#statusModalEdsa" class="status" style=" top: 481px; left: 113px;"></a>
-            <a href="#statusModalLibertad" class="status" style="	top: 456px; left: 161px; background-position: -23px -49px;"></a>
-            <a href="#statusModalGilPuyat" class="status" style="	top: 432px; left: 211px; background-position: -23px -73px;"></a>
-            <a href="#statusModalVitoCruz" class="status" style="	top: 408px; left: 259px; background-position: -23px -97px;"></a>
-            <a href="#statusModalQuirino" class="status" style="	top: 384px; left: 307px; background-position: -23px -121px;"></a>
-            <a href="#statusModalPedroGil" class="status" style="	top: 359px; left: 357px; background-position: -23px -145px;"></a>
-            <a href="#statusModalUNAve" class="status" style="	top: 335px; left: 406px; background-position: -23px -169px;"></a>
-            <a href="#statusModalCentral" class="status" style="	top: 309px; left: 455px; background-position: -23px -192px;"></a>
-            <a href="#statusModalCarriedo" class="status" style="	top: 285px; left: 504px; background-position: -23px -217px;"></a>
-            <a href="#statusModalDJose" class="status" style="	top: 261px; left: 552px; background-position: -23px -217px;"></a>
-            <a href="#statusModalBambang" class="status" style="	top: 236px; left: 602px; background-position: -23px -192px;"></a>
-            <a href="#statusModalTayuman" class="status" style="	top: 212px; left: 650px; background-position: -23px -168px;"></a>
-            <a href="#statusModalBlumentritt" class="status" style="	top: 188px; left: 699px; background-position: -23px -145px;"></a>
-            <a href="#statusModalAbadSantos" class="status" style="	top: 163px; left: 748px; background-position: -23px -121px;"></a>
-            <a href="#statusModalRPapa" class="status" style="	top: 139px; left: 796px; background-position: -23px -97px;"></a>
-            <a href="#statusModal5thAvenue" class="status" style="	top: 114px; left: 846px; background-position: -23px -73px;"></a>
-            <a href="#statusModalMonumento" class="status" style="	top: 89px; left: 895px; background-position: -23px -49px;"></a>
-            <a href="#statusModalBalintawak" class="status" style="	top: 65px; left: 944px; background-position: -23px -25px;"></a>
-            <a href="#statusModalRoosevelt" class="status" style="	top: 41px; left: 993px; background-position: -23px -1px;"></a>*@
         </div>
     </div>
-
-
-    <div id="statusModalBaclaran" class="mainModalDiv">
-        <div class="statusModalDiv">
-            <center>
-                <a href="#close" title="Close" class="close">X</a>
-                <h3 style="border:medium solid; border-radius: 6px;">BACLARAN</h3>
-                <div class="innerDiv">
-                    <div class="innerDiv2" style="background-color:#c0392b; color:#FFF">Southbound: H</div>
-                    <div class="innerDiv2" style="background-color:#f39c12; color:#FFF">Northbound: M</div>
-                    <br>
-                    <br>
-                    <p>As of @currentTime</p>
-                </div>
-            </center>
-        </div>
-    </div>
-    <div id="statusModalEdsa" class="mainModalDiv">
-        <div class="statusModalDiv">
-            <center>
-                <a href="#close" title="Close" class="close">X</a>
-                <h3 style="border:medium solid; border-radius: 6px;">EDSA</h3>
-                <div class="innerDiv">
-                    <div class="innerDiv2" style="background-color:#27ae60; color:#FFF">Southbound: L</div>
-                    <div class="innerDiv2" style="background-color:#27ae60; color:#FFF">Northbound: L</div>
-                    <br>
-                    <br>
-                    <p>As of @currentTime</p>
-                </div>
-            </center>
-        </div>
-    </div>
-    <div id="statusModalLibertad" class="mainModalDiv">
-        <div class="statusModalDiv">
-            <center>
-                <a href="#close" title="Close" class="close">X</a>
-                <h3 style="border:medium solid; border-radius: 6px;">LIBERTAD</h3>
-                <div class="innerDiv">
-                    <div class="innerDiv2" style="background-color:#f39c12; color:#FFF">Southbound: M</div>
-                    <div class="innerDiv2" style="background-color:#f39c12; color:#FFF">Northbound: M</div>
-                    <br>
-                    <br>
-                    <p>As of @currentTime</p>
-                </div>
-            </center>
-        </div>
-    </div>
-    <div id="statusModalGilPuyat" class="mainModalDiv">
-        <div class="statusModalDiv">
-            <center>
-                <a href="#close" title="Close" class="close">X</a>
-                <h3 style="border:medium solid; border-radius: 6px;">GIL PUYAT</h3>
-                <div class="innerDiv">
-                    <div class="innerDiv2" style="background-color:#f39c12; color:#FFF">Southbound: M</div>
-                    <div class="innerDiv2" style="background-color:#c0392b; color:#FFF">Northbound: H</div>
-                    <br>
-                    <br>
-                    <p>As of @currentTime</p>
-                </div>
-            </center>
-        </div>
-    </div>
-    <div id="statusModalVitoCruz" class="mainModalDiv">
-        <div class="statusModalDiv">
-            <center>
-                <a href="#close" title="Close" class="close">X</a>
-                <h3 style="border:medium solid; border-radius: 6px;">VITO CRUZ</h3>
-                <div class="innerDiv">
-                    <div class="innerDiv2" style="background-color:#c0392b; color:#FFF">Southbound: H</div>
-                    <div class="innerDiv2" style="background-color:#c0392b; color:#FFF">Northbound: H</div>
-                    <br>
-                    <br>
-                    <p>As of @currentTime</p>
-                </div>
-            </center>
-        </div>
-    </div>
-
-    <div id="statusModalQuirino" class="mainModalDiv">
-        <div class="statusModalDiv">
-            <center>
-                <a href="#close" title="Close" class="close">X</a>
-                <h3 style="border:medium solid; border-radius: 6px;">QUIRINO</h3>
-                <div class="innerDiv">
-                    <div class="innerDiv2" style="background-color:#27ae60; color:#FFF">Southbound: L</div>
-                    <div class="innerDiv2" style="background-color:#27ae60; color:#FFF">Northbound: L</div>
-                    <br>
-                    <br>
-                    <p>As of @currentTime</p>
-                </div>
-            </center>
-        </div>
-    </div>
-    <div id="statusModalPedroGil" class="mainModalDiv">
-        <div class="statusModalDiv">
-            <center>
-                <a href="#close" title="Close" class="close">X</a>
-                <h3 style="border:medium solid; border-radius: 6px;">PEDRO GIL</h3>
-                <div class="innerDiv">
-                    <div class="innerDiv2" style="background-color:#27ae60; color:#FFF">Southbound: L</div>
-                    <div class="innerDiv2" style="background-color:#27ae60; color:#FFF">Northbound: L</div>
-                    <br>
-                    <br>
-                    <p>As of @currentTime</p>
-                </div>
-            </center>
-        </div>
-    </div>
-    <div id="statusModalUNAve" class="mainModalDiv">
-        <div class="statusModalDiv">
-            <center>
-                <a href="#close" title="Close" class="close">X</a>
-                <h3 style="border:medium solid; border-radius: 6px;">U.N. Avenue</h3>
-                <div class="innerDiv">
-                    <div class="innerDiv2" style="background-color:#27ae60; color:#FFF">Southbound: L</div>
-                    <div class="innerDiv2" style="background-color:#27ae60; color:#FFF">Northbound: L</div>
-                    <br>
-                    <br>
-                    <p>As of 6:00pm, February 1, 2014</p>
-                </div>
-            </center>
-        </div>
-    </div>
-    <div id="statusModalCentral" class="mainModalDiv">
-        <div class="statusModalDiv">
-            <center>
-                <a href="#close" title="Close" class="close">X</a>
-                <h3 style="border:medium solid; border-radius: 6px;">CENTRAL</h3>
-                <div class="innerDiv">
-                    <div class="innerDiv2" style="background-color:#c0392b; color:#FFF">Southbound: H</div>
-                    <div class="innerDiv2" style="background-color:#f39c12; color:#FFF">Northbound: M</div>
-                    <br>
-                    <br>
-                    <p>As of @currentTime</p>
-                </div>
-            </center>
-        </div>
-    </div>
-    <div id="statusModalCarriedo" class="mainModalDiv">
-        <div class="statusModalDiv">
-            <center>
-                <a href="#close" title="Close" class="close">X</a>
-                <h3 style="border:medium solid; border-radius: 6px;">CARRIEDO</h3>
-                <div class="innerDiv">
-                    <div class="innerDiv2" style="background-color:#c0392b; color:#FFF">Southbound: H</div>
-                    <div class="innerDiv2" style="background-color:#f39c12; color:#FFF">Northbound: M</div>
-                    <br>
-                    <br>
-                    <p>As of @currentTime</p>
-                </div>
-            </center>
-        </div>
-    </div>
-    <div id="statusModalDJose" class="mainModalDiv">
-        <div class="statusModalDiv">
-            <center>
-                <a href="#close" title="Close" class="close">X</a>
-                <h3 style="border:medium solid; border-radius: 6px;">DOROTEO JOSE</h3>
-                <div class="innerDiv">
-                    <div class="innerDiv2" style="background-color:#c0392b; color:#FFF">Southbound: H</div>
-                    <div class="innerDiv2" style="background-color:#27ae60; color:#FFF">Northbound: L</div>
-                    <br>
-                    <br>
-                    <p>As of @currentTime</p>
-                </div>
-            </center>
-        </div>
-    </div>
-    <div id="statusModalBambang" class="mainModalDiv">
-        <div class="statusModalDiv">
-            <center>
-                <a href="#close" title="Close" class="close">X</a>
-                <h3 style="border:medium solid; border-radius: 6px;">BAMBANG</h3>
-                <div class="innerDiv">
-                    <div class="innerDiv2" style="background-color:#27ae60; color:#FFF">Southbound: L</div>
-                    <div class="innerDiv2" style="background-color:#27ae60; color:#FFF">Northbound: L</div>
-                    <br>
-                    <br>
-                    <p>As of @currentTime</p>
-                </div>
-            </center>
-        </div>
-    </div>
-    <div id="statusModalTayuman" class="mainModalDiv">
-        <div class="statusModalDiv">
-            <center>
-                <a href="#close" title="Close" class="close">X</a>
-                <h3 style="border:medium solid; border-radius: 6px;">TAYUMAN</h3>
-                <div class="innerDiv">
-                    <div class="innerDiv2" style="background-color:#27ae60; color:#FFF">Southbound: L</div>
-                    <div class="innerDiv2" style="background-color:#27ae60; color:#FFF">Northbound: L</div>
-                    <br>
-                    <br>
-                    <p>As of @currentTime</p>
-                </div>
-            </center>
-        </div>
-    </div>
-    <div id="statusModalBlumentritt" class="mainModalDiv">
-        <div class="statusModalDiv">
-            <center>
-                <a href="#close" title="Close" class="close">X</a>
-                <h3 style="border:medium solid; border-radius: 6px;">BLUMENTRITT</h3>
-                <div class="innerDiv">
-                    <div class="innerDiv2" style="background-color:#27ae60; color:#FFF">Southbound: L</div>
-                    <div class="innerDiv2" style="background-color:#27ae60; color:#FFF">Northbound: L</div>
-                    <br>
-                    <br>
-                    <p>As of @currentTime</p>
-                </div>
-            </center>
-        </div>
-    </div>
-    <div id="statusModalAbadSantos" class="mainModalDiv">
-        <div class="statusModalDiv">
-            <center>
-                <a href="#close" title="Close" class="close">X</a>
-                <h3 style="border:medium solid; border-radius: 6px;">ABAD SANTOS</h3>
-                <div class="innerDiv">
-                    <div class="innerDiv2" style="background-color:#f39c12; color:#FFF">Southbound: M</div>
-                    <div class="innerDiv2" style="background-color:#27ae60; color:#FFF">Northbound: L</div>
-                    <br>
-                    <br>
-                    <p>As of @currentTime</p>
-                </div>
-            </center>
-        </div>
-    </div>
-    <div id="statusModalRPapa" class="mainModalDiv">
-        <div class="statusModalDiv">
-            <center>
-                <a href="#close" title="Close" class="close">X</a>
-                <h3 style="border:medium solid; border-radius: 6px;">R. Papa</h3>
-                <div class="innerDiv">
-                    <div class="innerDiv2" style="background-color:#c0392b; color:#FFF">Southbound: H</div>
-                    <div class="innerDiv2" style="background-color:#f39c12; color:#FFF">Northbound: M</div>
-                    <br>
-                    <br>
-                    <p>As of @currentTime</p>
-                </div>
-            </center>
-        </div>
-    </div>
-    <div id="statusModal5thAvenue" class="mainModalDiv">
-        <div class="statusModalDiv">
-            <center>
-                <a href="#close" title="Close" class="close">X</a>
-                <h3 style="border:medium solid; border-radius: 6px;">5TH AVENUE</h3>
-                <div class="innerDiv">
-                    <div class="innerDiv2" style="background-color:#f39c12; color:#FFF">Southbound: M</div>
-                    <div class="innerDiv2" style="background-color:#c0392b; color:#FFF">Northbound: H</div>
-                    <br>
-                    <br>
-                    <p>As of @currentTime</p>
-                </div>
-            </center>
-        </div>
-    </div>
-    <div id="statusModalMonumento" class="mainModalDiv">
-        <div class="statusModalDiv">
-            <center>
-                <a href="#close" title="Close" class="close">X</a>
-                <h3 style="border:medium solid; border-radius: 6px;">MONUMENTO</h3>
-                <div class="innerDiv">
-                    <div class="innerDiv2" style="background-color:#f39c12; color:#FFF">Southbound: M</div>
-                    <div class="innerDiv2" style="background-color:#27ae60; color:#FFF">Northbound: L</div>
-                    <br>
-                    <br>
-                    <p>As of @currentTime</p>
-                </div>
-            </center>
-        </div>
-    </div>
-    <div id="statusModalBalintawak" class="mainModalDiv">
-        <div class="statusModalDiv">
-            <center>
-                <a href="#close" title="Close" class="close">X</a>
-                <h3 style="border:medium solid; border-radius: 6px;">BALINTAWAK</h3>
-                <div class="innerDiv">
-                    <div class="innerDiv2" style="background-color:#27ae60; color:#FFF">Southbound: L</div>
-                    <div class="innerDiv2" style="background-color:#f39c12; color:#FFF">Northbound: M</div>
-                    <br>
-                    <br>
-                    <p>As of @currentTime</p>
-                </div>
-            </center>
-        </div>
-    </div>
-    <div id="statusModalRoosevelt" class="mainModalDiv">
-        <div class="statusModalDiv">
-            <center>
-                <a href="#close" title="Close" class="close">X</a>
-                <h3 style="border:medium solid; border-radius: 6px;">ROOSEVELT</h3>
-                <div class="innerDiv">
-                    <div class="innerDiv2" style="background-color:#c0392b; color:#FFF">Southbound: H</div>
-                    <div class="innerDiv2" style="background-color:#c0392b; color:#FFF">Northbound: H</div>
-                    <br>
-                    <br>
-                    <p>As of @currentTime</p>
-                </div>
-            </center>
-        </div>
-    </div>
-
 
     <script src="js/jquery-1.8.3.min.js"></script>
     <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
@@ -371,6 +76,5 @@
     <script src="js/flatui-radio.js"></script>
     <script src="js/jquery.tagsinput.js"></script>
     <script src="js/jquery.placeholder.js"></script>
-    <script src="~/Scripts/view.js"></script>
 </body>
 </html>
