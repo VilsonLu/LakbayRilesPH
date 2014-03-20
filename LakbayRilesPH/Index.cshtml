@@ -27,7 +27,29 @@
         <div class="map">
             <img class="map-photo" src="images/newbackbone.png" style="z-index:1;">
 
-            <a href="#statusModalBaclaran" class="status" style="	top: 505px; left: 63px; background-position: -23px -1px;"></a>
+            <script>
+                var stationList = ["Baclaran", "Edsa", "Libertad", "GilPuyat", "VitoCruz", "Quirino", "PedroGil", "UNAve", "Central", "Carriendo", "DJose", "Bambang", "Tayuman", "Blumentritt", "AbadSantos", "RPapa", "5thAvenue", "Monumento", "Balintawak", "Roosevelt"];
+
+                function createModal(stnNum) {
+                    var htmlElm = '<a href="#statusModal' + 'stnNum' + '" class="status" style="top: 505px; left: 63px; background-position: -23px -1px;"></a>'
+
+                    return htmlElm;
+                };
+
+                function createAllModal() {
+                    var html = '';
+                    for (i = 0; i < stationList.length; i++) {
+                        html += createModal(i);
+                    }
+                    console.log(html);
+
+                    return html;
+                };
+
+                $('body').append(createAllModal());
+            </script>
+
+            @*<a href="#statusModalBaclaran" class="status" style="	top: 505px; left: 63px; background-position: -23px -1px;"></a>
             <a href="#statusModalEdsa" class="status" style="	top: 481px; left: 113px; background-position: -23px -25px;"></a>
             <a href="#statusModalLibertad" class="status" style="	top: 456px; left: 161px; background-position: -23px -49px;"></a>
             <a href="#statusModalGilPuyat" class="status" style="	top: 432px; left: 211px; background-position: -23px -73px;"></a>
@@ -46,7 +68,7 @@
             <a href="#statusModal5thAvenue" class="status" style="	top: 114px; left: 846px; background-position: -23px -73px;"></a>
             <a href="#statusModalMonumento" class="status" style="	top: 89px; left: 895px; background-position: -23px -49px;"></a>
             <a href="#statusModalBalintawak" class="status" style="	top: 65px; left: 944px; background-position: -23px -25px;"></a>
-            <a href="#statusModalRoosevelt" class="status" style="	top: 41px; left: 993px; background-position: -23px -1px;"></a>
+            <a href="#statusModalRoosevelt" class="status" style="	top: 41px; left: 993px; background-position: -23px -1px;"></a>*@
         </div>
     </div>
 
