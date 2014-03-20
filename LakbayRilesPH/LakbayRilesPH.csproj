@@ -159,8 +159,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Index.cshtml" />
-    <Content Include="HomeAdmin.cshtml" />
-    <Content Include="Login.cshtml" />
+    <Content Include="View\HomeAdmin.cshtml" />
+    <Content Include="View\Login.cshtml" />
     <None Include="Properties\PublishProfiles\lakbayrilesph.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -175,7 +175,6 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="Login\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -190,17 +189,15 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin.cs" />
-    <Compile Include="Controller\Login.cs" />
-    <Compile Include="Controller\StationDetails.cs" />
-    <Compile Include="Controller\StationList.cs" />
-    <Compile Include="Login\Account.cs" />
-    <Compile Include="Login\Staff.cs" />
+    <Compile Include="ClassFiles\Admin.cs" />
+    <Compile Include="ClassFiles\Login.cs" />
+    <Compile Include="ClassFiles\StationDetails.cs" />
+    <Compile Include="ClassFiles\StationList.cs" />
+    <Compile Include="ClassFiles\Account.cs" />
+    <Compile Include="ClassFiles\Staff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
