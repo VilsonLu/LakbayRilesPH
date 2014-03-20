@@ -192,6 +192,8 @@
   <ItemGroup>
     <Compile Include="Admin.cs" />
     <Compile Include="Controller\Login.cs" />
+    <Compile Include="Controller\StationDetails.cs" />
+    <Compile Include="Controller\StationList.cs" />
     <Compile Include="Login\Account.cs" />
     <Compile Include="Login\Staff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
