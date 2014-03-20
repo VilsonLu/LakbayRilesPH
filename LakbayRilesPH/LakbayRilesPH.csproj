@@ -110,6 +110,7 @@
     <Content Include="css\demo.css" />
     <Content Include="css\docs.css" />
     <Content Include="css\flat-ui.css" />
+    <Content Include="css\home.css" />
     <Content Include="css\login.css" />
     <Content Include="css\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

@@ -8,11 +8,12 @@
     <title>Lakbay Riles</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="Content/bootstrap.css" rel="stylesheet">
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
 
-    <link href="css/flat-ui.css" rel="stylesheet">
-
+    <link href="~/css/flat-ui.css" rel="stylesheet">
+    <link href="~/css/home.css" rel="stylesheet" />
     <link rel="shortcut icon" href="images/favicon.ico">
+   
 
 </head>
 <body>
@@ -26,9 +27,15 @@
     <div class="container" style="height: 591px;">
         <div class="map">
             <img class="map-photo" src="images/newbackbone.png" style="z-index:1;">
-
-            <a href="#statusModalBaclaran" class="status" style="	top: 505px; left: 63px; background-position: -23px -1px;"></a>
-            <a href="#statusModalEdsa" class="status" style="	top: 481px; left: 113px; background-position: -23px -25px;"></a>
+            @{
+                for (int i = 0; i < 20; i++)
+                {
+                    var station = "statusModal" + i;
+                    <a href=@station></a>
+                }
+            }
+            @*<a href="#statusModalBaclaran" class="status" style="	top: 505px; left: 63px;"></a>
+            <a href="#statusModalEdsa" class="status" style=" top: 481px; left: 113px;"></a>
             <a href="#statusModalLibertad" class="status" style="	top: 456px; left: 161px; background-position: -23px -49px;"></a>
             <a href="#statusModalGilPuyat" class="status" style="	top: 432px; left: 211px; background-position: -23px -73px;"></a>
             <a href="#statusModalVitoCruz" class="status" style="	top: 408px; left: 259px; background-position: -23px -97px;"></a>
@@ -46,7 +53,7 @@
             <a href="#statusModal5thAvenue" class="status" style="	top: 114px; left: 846px; background-position: -23px -73px;"></a>
             <a href="#statusModalMonumento" class="status" style="	top: 89px; left: 895px; background-position: -23px -49px;"></a>
             <a href="#statusModalBalintawak" class="status" style="	top: 65px; left: 944px; background-position: -23px -25px;"></a>
-            <a href="#statusModalRoosevelt" class="status" style="	top: 41px; left: 993px; background-position: -23px -1px;"></a>
+            <a href="#statusModalRoosevelt" class="status" style="	top: 41px; left: 993px; background-position: -23px -1px;"></a>*@
         </div>
     </div>
 
@@ -364,5 +371,6 @@
     <script src="js/flatui-radio.js"></script>
     <script src="js/jquery.tagsinput.js"></script>
     <script src="js/jquery.placeholder.js"></script>
+    <script src="~/Scripts/view.js"></script>
 </body>
 </html>
