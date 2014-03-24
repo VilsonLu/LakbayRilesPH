@@ -42,23 +42,49 @@
                     var station = stationList.ElementAt(i);
                     var stationName = "statusModal" + station.idName;
                     <!--BG POSITION-->
-                    <a href="#@stationName" class="status" style="top: @station.top; left: @station.left; background-position: -23px -1px;"></a>
+                    <a href="#@stationName" class="status" data-toggle="modal" style="top: @station.top; left: @station.left; background-position: -23px -1px;"></a>
 
-                    <div id="@stationName" class="mainModalDiv">
-                        <div class="statusModalDiv">
-                            <center>
-                                <a href="#close" title="Close" class="close">X</a>
-                                <h3 style="border:medium solid; border-radius: 6px;">@station.stationName</h3>
-                                <div class="innerDiv">
-                                    <!--COLOR AND TEXT-->
-                                    <div class="innerDiv2" style="background-color:#c0392b; color:#FFF">Southbound: H</div>
-                                    <div class="innerDiv2" style="background-color:#f39c12; color:#FFF">Northbound: M</div>
-                                    <br>
-                                    <br>
-                                    <!--TIME FROM DATABSE-->
-                                    <p>As of @currentTime</p>
+                    <!--THIS IS THE LEGIT MODAL FOR THE STATUS OF THE LRT1 STATIONS-->
+                    
+                    <div class="modal fade" id="@stationName" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <center><h4 class="modal-title" id="myModalLabel">@station.stationName STATION</h4></center>
                                 </div>
-                            </center>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="tile" style="background-color:#c0392b; color:#FFF">
+                                                
+                                                <h6>Southbound:<br />HEAVY</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="tile" style="background-color:#f39c12; color:#FFF">
+                                                <h6>Northbound:<br />MODERATE</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="tile">
+                                                <h6>Announcements:</h6>
+                                                <p>Announcements about the station shall go here.</p>
+                                            </div>
+                                        </div>
+                                    </div>     
+                                </div>
+                                <div class="modal-footer">
+                                    <!--TIME FROM DATABSE-->
+                                    <center>
+                                        <p><i>As of @currentTime</i></p>
+                                        <button type="button" class="btn btn-inverse" data-dismiss="modal">Close</button>
+                                    </center>
+                                    
+                                </div>
+                            </div>
                         </div>
                     </div>
                 }
