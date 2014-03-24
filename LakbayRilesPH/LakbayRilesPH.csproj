@@ -111,6 +111,7 @@
     <Content Include="css\bootstrap.css" />
     <Content Include="css\demo.css" />
     <Content Include="css\docs.css" />
+    <Content Include="css\error.css" />
     <Content Include="css\flat-ui.css" />
     <Content Include="css\home.css" />
     <Content Include="css\login.css" />
@@ -165,7 +166,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Index.cshtml" />
     <Content Include="View\HomeAdmin.cshtml" />
-    <Content Include="View\Login.cshtml" />
     <None Include="Properties\PublishProfiles\lakbayrilesph.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -189,7 +189,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\view.js" />
-    <None Include="View\Login_new.cshtml" />
+    <None Include="View\Login.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
