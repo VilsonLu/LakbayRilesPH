@@ -27,6 +27,7 @@
         <!--HELLO-->
         <!-- LAKBAY RILES LOGO -->
         <div class="navbar-header" style="padding-left:10px;"><img src="images/lakbayrileslogo_s.png"></div>
+        <h1 class="navbar-text" style="color: #fff; font-size:23px;">LRT LINE 1 SYSTEM VIEW</h1>
         <!-- DATE AND TIME -->
         <p class="navbar-text navbar-right" style="color: #fff; padding-right: 20px;">Today is @currentTime</p>
     </nav>
@@ -34,13 +35,43 @@
         <div class="map">
             <img class="map-photo" src="images/newbackbone.png" style="z-index:1;">
             <br />
+            <!-- THIS IS THE PAGE FOR THE ANNOUNCEMENTS -->
             <div class="col-lg-5" style="z-index:3;">
-                <div class="tile" style="background-color: white; height: 180px; overflow-y: scroll; border:solid; border-color:#2c3e50; border-width:5px; border-radius:15px;">
-                    <h4>ANNOUNCEMENTS:</h4>
-                    <p>There is a heavy crowd volume going southbound because a passenger committed suicide in the station.<br />
-                        There is a heavy crowd volume going southbound because a passenger committed suicide in the station.<br />
-                        There is a heavy crowd volume going southbound because a passenger committed suicide in the station.</p>
+                <!-- ENHANCED ANNOUNCEMENT BOARD -->
+                <div id="announcement" class="carousel slide" data-interval="6000" data-ride="carousel">
+                    <!-- Carousel items -->
+                    <div class="carousel-inner" style="border-radius: 15px; font-weight: 600;">
+                        <div class="active item tile" style="background-color: #2c3e50; color:#FFF; height: 180px; overflow:hidden;">
+                            <h4>ANNOUNCEMENTS:</h4>
+                            <a href="#" data-toggle="modal" style="color:#f1c40f">
+                                <p>[As of @currentTime] - <i>No train from EDSA to ROOSEVELT. Kasi naman may magaling na nagpakamatay na Stressed sa buhay.</i></p>
+                            </a>
+                        </div>
+
+                        <div class="item tile" style="background-color: #2c3e50; color:#FFF; height: 180px; overflow:hidden;">
+                            <h4>ANNOUNCEMENTS:</h4>
+                            <a href="#" data-toggle="modal" style="color:#f1c40f">
+                                <p>[As of @currentTime] - <i>No train from EDSA to ROOSEVELT. Kasi naman may magaling na nagpakamatay na Stressed sa buhay.</i></p>
+                            </a>
+                        </div>
+
+                        <div class="item tile" style="background-color: #2c3e50; color:#FFF; height: 180px; overflow:hidden;">
+                            <h4>ANNOUNCEMENTS:</h4>
+                            <a href="#" data-toggle="modal" style="color:#f1c40f">
+                                <p>[As of @currentTime] - <i>No train from EDSA to ROOSEVELT. Kasi naman may magaling na nagpakamatay na Stressed sa buhay.</i></p>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Carousel nav -->
+                    <a class="carousel-control left" href="#announcement" data-slide="prev" style="border-radius:15px">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="carousel-control right" href="#myCarousel" data-slide="next" style="border-radius:15px">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
                 </div>
+
+
             </div>
 
             @{
@@ -58,40 +89,42 @@
                     <div class="modal fade" id="@stationName" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <div class="modal-header" style="background-color:#2c3e50; color:white;">
+                                    <button type="button" class="btn btn-danger pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     <center><h5 class="modal-title" id="myModalLabel">@station.stationName STATION</h5></center>
                                 </div>
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col-lg-6">
+                                            <div class="tile" style="background-color:#f39c12; color:#FFF">
+                                                <br />
+                                                <img src="images/up_circular-64.png" style="fill:#fff"/><br />
+                                                <h6>Northbound</h6>
+                                                <p>Waiting Time: 10-15 mins.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
                                             <div class="tile" style="background-color:#c0392b; color:#FFF">
                                                 <br />
                                                 <img src="images/down_circular-64.png" /><br />
                                                 <h6>Southbound</h6>
-                                                <p>HEAVY CROWD VOLUME</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="tile" style="background-color:#f39c12; color:#FFF">
-                                                <br />
-                                                <img src="images/up_circular-64.png" /><br />
-                                                <h6>Northbound</h6>
-                                                <p>MODERATE CROWD VOLUME</p>
+                                                <p>Waiting Time: 15-20 mins.</p>
                                             </div>
                                         </div>
                                     </div>
                                     <br />
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <div class="tile">
+                                            <div class="tile" style="height:150px; overflow-y:scroll;">
                                                 <h6>Announcements:</h6>
-                                                <p>There is a heavy crowd volume going southbound because a passenger committed suicide in the station.</p>
+                                                <p>There is a heavy crowd volume going southbound because a passenger committed suicide in the station.<br />
+                                                    There is a heavy crowd volume going southbound because a passenger committed suicide in the station.</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <br />
-                                    <center><p><i>Station Crowd Volume as of @currentTime</i></p></center>
+                                </div>
+                                <div class="modal-footer" style="background-color:#2c3e50; color:white;">
+                                    <center><i>Station Crowd Volume as of @currentTime</i></center>
                                 </div>
                             </div>
                         </div>
