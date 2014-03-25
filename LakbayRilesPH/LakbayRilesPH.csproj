@@ -201,6 +201,8 @@
     <Compile Include="ClassFiles\StationList.cs" />
     <Compile Include="ClassFiles\Account.cs" />
     <Compile Include="ClassFiles\Staff.cs" />
+    <Compile Include="ClassFiles\StationStatus.cs" />
+    <Compile Include="ClassFiles\StationUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

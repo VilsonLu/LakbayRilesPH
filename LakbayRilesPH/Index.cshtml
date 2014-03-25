@@ -1,8 +1,7 @@
 ﻿<!DOCTYPE html>
 
 @using LakbayRilesPH;
-@using LakbayRilesPH.Controller;
-
+@using LakbayRilesPH.ClassFiles;
 @{
     var currentTime = DateTime.Now;
 }
@@ -28,7 +27,7 @@
         <!-- LAKBAY RILES LOGO -->
         <div class="navbar-header" style="padding-left:10px;"><img src="images/lakbayrileslogo_s.png"></div>
         <!-- DATE AND TIME -->
-        <p class="navbar-text navbar-right" style="color: #fff; padding-right: 20px;">@currentTime</p>
+        <p class="navbar-text navbar-right" style="color: #fff; padding-right: 20px;">@currentTime.ToString("MMMM dd, yyyy H:mm:ss") </p>
     </nav>
     <div class="container" style="height: 591px;">
         <div class="map">
@@ -41,8 +40,10 @@
                 {
                     var station = stationList.ElementAt(i);
                     var stationName = "statusModal" + station.idName;
-                    
-                    <a href="#@stationName" class="status" style="top: @station.top; left: @station.left; background-position: -23px -1px;"></a>
+                    var north = StationUpdate.DisplayUpdate(station.stationName, "CV", "north");
+                    var south = StationUpdate.DisplayUpdate(station.stationName, "CV", "south");
+                    var pos = "-23px " + StationUpdate.DisplayStatus(north.CodeName, south.CodeName);
+                    <a href="#@stationName" class="status" style="top: @station.top; left: @station.left; background-position: @pos"></a>
 
                     <div id="@stationName" class="mainModalDiv">
                         <div class="statusModalDiv">
@@ -50,13 +51,49 @@
                                 <a href="#close" title="Close" class="close">X</a>
                                 <h3 style="border:medium solid; border-radius: 6px;">@station.stationName</h3>
                                 <div class="innerDiv">
+                                    @{
+                                                      
                                    
-                                    <div class="innerDiv2" style="background-color:#c0392b; color:#FFF">Southbound: H</div>
-                                    <div class="innerDiv2" style="background-color:#f39c12; color:#FFF">Northbound: M</div>
+                                        if(north.CodeName == "Heavy"){
+                                            <div class="innerDiv2" style="background-color:#c0392b; color:#FFF">Northbound: @north.CodeName</div>
+                                        } else if(north.CodeName == "Moderate"){
+                                            <div class="innerDiv2" style="background-color:#f39c12; color:#FFF">Northbound: @north.CodeName</div>
+                                        } else if(north.CodeName == "Light"){
+                                            <div class="innerDiv2" style="background-color:#16ff34; color:#FFF">Northbound: @north.CodeName</div>
+                                        }
+                                    }
+
+
+                                    @{
+                                        
+
+                                        if (south.CodeName == "Heavy")
+                                        {
+                                            <div class="innerDiv2" style="background-color:#c0392b; color:#FFF">Southbound: @south.CodeName</div>
+                                        }
+                                        else if (south.CodeName == "Moderate")
+                                        {
+                                            <div class="innerDiv2" style="background-color:#f39c12; color:#FFF">Southbound: @south.CodeName</div>
+                                        }
+                                        else if (south.CodeName == "Light")
+                                        {
+                                            <div class="innerDiv2" style="background-color:#16ff34; color:#FFF">Southbound: @south.CodeName</div>
+                                        }
+                                    }
+                                    
                                     <br>
                                     <br>
                              
-                                    <p>As of @currentTime</p>
+                                    @if (north.Time > south.Time) 
+                                    { 
+                                        <p>As of @north.ToString("MMMM dd, yyyy H:mm:ss")</p>
+                                    }
+                                    else
+                                    {
+                                        <p>As of @south.ToString("MMMM dd, yyyy H:mm:ss")</p>
+                                    }
+                                        
+      
                                 </div>
                             </center>
                         </div>
