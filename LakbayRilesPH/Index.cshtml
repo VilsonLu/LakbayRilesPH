@@ -113,13 +113,13 @@
                         southCV = "M";
                         southColor = "#f39c12";
                     }
-                    else if (south.CodeName == "Light")
+                    else
                     {
                         southCV = "L";
-                        southColor = "00ff90";
+                        southColor = "#00ff90";
                     }
-                    
-                    <a href="#@stationName" class="status" style="top: @station.top; left: @station.left; background-position: -23px -1px;"></a>
+                    var mapColor = "-23px " + StationUpdate.DisplayStatus(north.CodeName, south.CodeName);
+                    <a href="#@stationName" class="status" style="top: @station.top; left: @station.left; background-position: @mapColor;"></a>
 
                     <div id="@stationName" class="mainModalDiv">
                         <div class="statusModalDiv">
@@ -128,7 +128,7 @@
                                 <h3 style="border:medium solid; border-radius: 6px;">@station.stationName</h3>
                                 <div class="innerDiv">
                                    
-                                    <div class="innerDiv2" style="background-color:@southColor; color:#FFF">Southbound: H</div>
+                                    <div class="innerDiv2" style="background-color:@southColor; color:#FFF">Southbound: @southCV</div>
                                     <div class="innerDiv2" style="background-color:@northColor; color:#FFF">Northbound: @northCV</div>
                                     <br>
                                     <br>
