@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace LakbayRilesPH.Controller
+namespace LakbayRilesPH.ClassFiles
 {
     public class StationDetails {
         public string idName { get; set; }
