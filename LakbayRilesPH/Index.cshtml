@@ -26,12 +26,52 @@
         <!--HELLO-->
         <!-- LAKBAY RILES LOGO -->
         <div class="navbar-header" style="padding-left:10px;"><img src="images/lakbayrileslogo_s.png"></div>
+        <h1 class="navbar-text" style="color: #fff; font-size:23px;">LRT LINE 1 SYSTEM VIEW</h1>
         <!-- DATE AND TIME -->
-        <p class="navbar-text navbar-right" style="color: #fff; padding-right: 20px;">@currentTime.ToString("MMMM dd, yyyy H:mm:ss") </p>
+        <p class="navbar-text navbar-right" style="color: #fff; padding-right: 20px;">@currentTime</p>
     </nav>
     <div class="container" style="height: 591px;">
         <div class="map">
             <img class="map-photo" src="images/newbackbone.png" style="z-index:1;">
+            <br />
+            <!-- THIS IS THE PAGE FOR THE ANNOUNCEMENTS -->
+            <div class="col-lg-5" style="z-index:3;">
+                <!-- ENHANCED ANNOUNCEMENT BOARD -->
+                <div id="announcement" class="carousel slide" data-interval="6000" data-ride="carousel">
+                    <!-- Carousel items -->
+                    <div class="carousel-inner" style="border-radius: 15px; font-weight: 600;">
+                        <div class="active item tile" style="background-color: #2c3e50; color:#FFF; height: 180px; overflow:hidden;">
+                            <h4>ANNOUNCEMENTS:</h4>
+                            <a href="#" data-toggle="modal" style="color:#f1c40f">
+                                <p>[As of @currentTime] - <i>No train from EDSA to ROOSEVELT. Kasi naman may magaling na nagpakamatay na Stressed sa buhay.</i></p>
+                            </a>
+                        </div>
+
+                        <div class="item tile" style="background-color: #2c3e50; color:#FFF; height: 180px; overflow:hidden;">
+                            <h4>ANNOUNCEMENTS:</h4>
+                            <a href="#" data-toggle="modal" style="color:#f1c40f">
+                                <p>[As of @currentTime] - <i>No train from EDSA to ROOSEVELT. Kasi naman may magaling na nagpakamatay na Stressed sa buhay.</i></p>
+                            </a>
+                        </div>
+
+                        <div class="item tile" style="background-color: #2c3e50; color:#FFF; height: 180px; overflow:hidden;">
+                            <h4>ANNOUNCEMENTS:</h4>
+                            <a href="#" data-toggle="modal" style="color:#f1c40f">
+                                <p>[As of @currentTime] - <i>No train from EDSA to ROOSEVELT. Kasi naman may magaling na nagpakamatay na Stressed sa buhay.</i></p>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Carousel nav -->
+                    <a class="carousel-control left" href="#announcement" data-slide="prev" style="border-radius:15px">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="carousel-control right" href="#myCarousel" data-slide="next" style="border-radius:15px">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div>
+
+
+            </div>
 
             @{
                 var stationList = StationList.createStations();
@@ -42,8 +82,44 @@
                     var stationName = "statusModal" + station.idName;
                     var north = StationUpdate.DisplayUpdate(station.stationName, "CV", "north");
                     var south = StationUpdate.DisplayUpdate(station.stationName, "CV", "south");
-                    var pos = "-23px " + StationUpdate.DisplayStatus(north.CodeName, south.CodeName);
-                    <a href="#@stationName" class="status" style="top: @station.top; left: @station.left; background-position: @pos"></a>
+
+                    var northCV = "";
+                    var northColor = "";
+                    if (north.CodeName == "Heavy")
+                    {
+                        northCV = "H";
+                        northColor = "#c0392b";
+                    }
+                    else if (north.CodeName == "Moderate")
+                    {
+                        northCV = "M";
+                        northColor = "#f39c12";
+                    } else if(north.CodeName == "Light")
+                    {
+                        northCV = "L";
+                        northColor = "00ff90";
+                    }
+
+
+                    var southCV = "";
+                    var southColor = "";
+                    if (south.CodeName == "Heavy")
+                    {
+                        southCV = "H";
+                        southColor = "#c0392b";
+                    }
+                    else if (south.CodeName == "Moderate")
+                    {
+                        southCV = "M";
+                        southColor = "#f39c12";
+                    }
+                    else if (south.CodeName == "Light")
+                    {
+                        southCV = "L";
+                        southColor = "00ff90";
+                    }
+                    
+                    <a href="#@stationName" class="status" style="top: @station.top; left: @station.left; background-position: -23px -1px;"></a>
 
                     <div id="@stationName" class="mainModalDiv">
                         <div class="statusModalDiv">
@@ -51,51 +127,14 @@
                                 <a href="#close" title="Close" class="close">X</a>
                                 <h3 style="border:medium solid; border-radius: 6px;">@station.stationName</h3>
                                 <div class="innerDiv">
-                                    @{
-                                                      
                                    
-                                        if(north.CodeName == "Heavy"){
-                                            <div class="innerDiv2" style="background-color:#c0392b; color:#FFF">Northbound: @north.CodeName</div>
-                                        } else if(north.CodeName == "Moderate"){
-                                            <div class="innerDiv2" style="background-color:#f39c12; color:#FFF">Northbound: @north.CodeName</div>
-                                        } else if(north.CodeName == "Light"){
-                                            <div class="innerDiv2" style="background-color:#16ff34; color:#FFF">Northbound: @north.CodeName</div>
-                                        }
-                                    }
-
-
-                                    @{
-                                        
-
-                                        if (south.CodeName == "Heavy")
-                                        {
-                                            <div class="innerDiv2" style="background-color:#c0392b; color:#FFF">Southbound: @south.CodeName</div>
-                                        }
-                                        else if (south.CodeName == "Moderate")
-                                        {
-                                            <div class="innerDiv2" style="background-color:#f39c12; color:#FFF">Southbound: @south.CodeName</div>
-                                        }
-                                        else if (south.CodeName == "Light")
-                                        {
-                                            <div class="innerDiv2" style="background-color:#16ff34; color:#FFF">Southbound: @south.CodeName</div>
-                                        }
-                                    }
-                                    
+                                    <div class="innerDiv2" style="background-color:@southColor; color:#FFF">Southbound: H</div>
+                                    <div class="innerDiv2" style="background-color:@northColor; color:#FFF">Northbound: @northCV</div>
                                     <br>
                                     <br>
                              
-                                    @if (north.Time > south.Time) 
-                                    { 
-                                        <p>As of @north.ToString("MMMM dd, yyyy H:mm:ss")</p>
-                                    }
-                                    else
-                                    {
-                                        <p>As of @south.ToString("MMMM dd, yyyy H:mm:ss")</p>
-                                    }
-                                        
-      
+                                    <p>As of @currentTime</p>
                                 </div>
-                            </center>
                         </div>
                     </div>
                 }
