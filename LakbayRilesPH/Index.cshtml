@@ -2,6 +2,7 @@
 
 @using LakbayRilesPH;
 @using LakbayRilesPH.ClassFiles;
+
 @{
     var currentTime = DateTime.Now;
 }
@@ -13,63 +14,187 @@
     <title>Lakbay Riles</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="Content/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
 
     <link href="css/flat-ui.css" rel="stylesheet">
+
+    <link href="css/index.css" rel="stylesheet">
 
     <link rel="shortcut icon" href="images/favicon.ico">
 
 </head>
 
 <body>
+    <!-- THE NAVBAR -->
     <nav class="navbar navbar-default" role="navigation">
-        <!--HELLO-->
-        <!-- LAKBAY RILES LOGO -->
-        <div class="navbar-header" style="padding-left:10px;"><img src="images/lakbayrileslogo_s.png"></div>
-        <h1 class="navbar-text" style="color: #fff; font-size:23px;">LRT LINE 1 SYSTEM VIEW</h1>
-        <!-- DATE AND TIME -->
-        <p class="navbar-text navbar-right" style="color: #fff; padding-right: 20px;">@currentTime</p>
+
+        <!-- THE LAKBAY RILES LOGO -->
+        <div class="navbar-header index-navbar"><img src="images/lakbayrileslogo_s.png"></div>
+
+        <!-- THE TITLE OF THE VIEW -->
+        <h1 class="index-navbar-title navbar-text">LRT LINE 1 SYSTEM VIEW</h1>
+
+        <!-- THE DATE AND TIME -->
+        <p class="navbar-text navbar-right index-navbar-date">Today is @currentTime</p>
+
     </nav>
-    <div class="container" style="height: 591px;">
+
+    <!-- THE MAIN BODY OF LAKBAYRILES.PH -->
+    <div class="container index-body">
+
+        <!-- THE DIV FOR THE MAP -->
         <div class="map">
-            <img class="map-photo" src="images/newbackbone.png" style="z-index:1;">
+
+            <!-- THE IMAGE OF THE LINE MAP -->
+            <img class="map-photo index-map" src="images/newbackbone.png">
+
             <br />
-            <!-- THIS IS THE PAGE FOR THE ANNOUNCEMENTS -->
-            <div class="col-lg-5" style="z-index:3;">
-                <!-- ENHANCED ANNOUNCEMENT BOARD -->
+
+            <!-- THE DIV OF THE ANNOUNCEMENT BOARD -->
+            <div class="col-lg-5 index-announcement-board">
+
+                <!-- THE DIV OF THE CONTENTS ANNOUNCEMENT BOARD -->
                 <div id="announcement" class="carousel slide" data-interval="6000" data-ride="carousel">
-                    <!-- Carousel items -->
-                    <div class="carousel-inner" style="border-radius: 15px; font-weight: 600;">
-                        <div class="active item tile" style="background-color: #2c3e50; color:#FFF; height: 180px; overflow:hidden;">
+
+                    <!-- THE DIV FOR THE ANNOUNCEMENT ITEMS -->
+                    <div class="carousel-inner index-announcement-items">
+
+                        <!-- THE DIV FOR ANNOUNCEMENT 1 -->
+                        <div class="active item tile index-announcement-item">
                             <h4>ANNOUNCEMENTS:</h4>
-                            <a href="#" data-toggle="modal" style="color:#f1c40f">
-                                <p>[As of @currentTime] - <i>No train from EDSA to ROOSEVELT. Kasi naman may magaling na nagpakamatay na Stressed sa buhay.</i></p>
+                            <a href="#allAnnouncements" data-toggle="modal" class="index-announcement-link">
+                                <p>[As of @currentTime] - <i>No train from EDSA to ROOSEVELT. A deranged passenger committed suicide. CLICK FOR MORE DETAILS!</i></p>
                             </a>
                         </div>
 
-                        <div class="item tile" style="background-color: #2c3e50; color:#FFF; height: 180px; overflow:hidden;">
+                        <!-- THE DIV FOR ANNOUNCEMENT 2 -->
+                        <div class="item tile index-announcement-item">
                             <h4>ANNOUNCEMENTS:</h4>
-                            <a href="#" data-toggle="modal" style="color:#f1c40f">
-                                <p>[As of @currentTime] - <i>No train from EDSA to ROOSEVELT. Kasi naman may magaling na nagpakamatay na Stressed sa buhay.</i></p>
+                            <a href="#allAnnouncements" data-toggle="modal" class="index-announcement-link">
+                                <p>[As of @currentTime] - <i>No train from EDSA to ROOSEVELT. A deranged passenger committed suicide. CLICK FOR MORE DETAILS!</i></p>
                             </a>
                         </div>
 
-                        <div class="item tile" style="background-color: #2c3e50; color:#FFF; height: 180px; overflow:hidden;">
+                        <!-- THE DIV FOR ANNOUNCEMENT 3 -->
+                        <div class="item tile index-announcement-item">
                             <h4>ANNOUNCEMENTS:</h4>
-                            <a href="#" data-toggle="modal" style="color:#f1c40f">
-                                <p>[As of @currentTime] - <i>No train from EDSA to ROOSEVELT. Kasi naman may magaling na nagpakamatay na Stressed sa buhay.</i></p>
+                            <a href="#allAnnouncements" data-toggle="modal" class="index-announcement-link">
+                                <p>[As of @currentTime] - <i>No train from EDSA to ROOSEVELT. A deranged passenger committed suicide. CLICK FOR MORE DETAILS!</i></p>
                             </a>
                         </div>
+
                     </div>
-                    <!-- Carousel nav -->
-                    <a class="carousel-control left" href="#announcement" data-slide="prev" style="border-radius:15px">
+
+                    <!-- THE "NAVBAR" FOR THE ANNOUNCEMENT BOARD -->
+                    <a class="carousel-control left index-rounded-border" href="#announcement" data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left"></span>
                     </a>
-                    <a class="carousel-control right" href="#myCarousel" data-slide="next" style="border-radius:15px">
+
+                    <a class="carousel-control right index-rounded-border" href="#myCarousel" data-slide="next">
                         <span class="glyphicon glyphicon-chevron-right"></span>
                     </a>
+
                 </div>
 
+            </div>
+
+            <!-- THE MODAL FOR THE LIST OF ALL ANNOUNCEMENTS -->
+            <div class="modal fade" id="allAnnouncements" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+                <!-- THE MAIN MODAL DIV -->
+                <div class="modal-dialog">
+
+                    <!-- THE CONTENTS OF THE MODAL -->
+                    <div class="modal-content">
+
+                        <!-- THE HEADER OF THE MODAL -->
+                        <div class="modal-header index-modal-f-b">
+                            <button type="button" class="btn btn-danger pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <center><h5 class="modal-title" id="myModalLabel">LRT LINE 1 ANNOUNCEMENTS</h5></center>
+                        </div>
+
+                        <!-- THE BODY OF THE MODAL -->
+                        <div class="modal-body index-modal-body">
+                            
+                            <!-- THE DIV FOR ALL THE ANNOUNCEMENTS -->
+                            <div class="panel-group" id="AllAnnouncements">
+
+                                <!-- THE DIV FOR ANNOUNCEMENT 1 -->
+                                <div class="panel panel-default">
+
+                                    <!-- THE TITLE OF THE ANNOUNCEMENT -->
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title index-all-item">
+                                            <a data-toggle="collapse" data-parent="#AllAnnouncements" href="#announcementOne">
+                                                STORED VALUE TICKETS ARE TEMPORARILY UNAVAILABLE.
+                                            </a>
+                                        </h4>
+                                    </div>
+
+                                    <!-- THE FURTHER DETAILS OF THE ANNOUNCEMENT -->
+                                    <div id="announcementOne" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            Animo La Salle! Go La Salle! Keep the Animo burning! Live Jesus in our hearts! Rektikano!
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- THE DIV FOR ANNOUNCEMENT 2 -->
+                                <div class="panel panel-default">
+
+                                    <!-- THE TITLE OF THE ANNOUNCEMENT -->
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title index-all-item">
+                                            <a data-toggle="collapse" data-parent="#AllAnnouncements" href="#announcementTwo">
+                                                ROUTINE MAINTENANCE SCHEDULED ON MARCH 19, 2014.
+                                            </a>
+                                        </h4>
+                                    </div>
+
+                                    <!-- THE FURTHER DETAILS OF THE ANNOUNCEMENT -->
+                                    <div id="announcementTwo" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            Animo La Salle! Go La Salle! Keep the Animo burning! Live Jesus in our hearts! Rektikano!
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- THE DIV FOR ANNOUNCEMENT 3 -->
+                                <div class="panel panel-default">
+
+                                    <!-- THE TITLE OF THE ANNOUNCEMENT -->
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title index-all-item">
+                                            <a data-toggle="collapse" data-parent="#AllAnnouncements" href="#announcementThree">
+                                                STORED VALUE TICKETS ARE TEMPORARILY UNAVAILABLE.
+                                            </a>
+                                        </h4>
+                                    </div>
+
+                                    <!-- THE FURTHER DETAILS OF THE ANNOUNCEMENT -->
+                                    <div id="announcementThree" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            Animo La Salle! Go La Salle! Keep the Animo burning! Live Jesus in our hearts! Rektikano!
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                        <!-- THE FOOTER OF THE MODAL -->
+                        <div class="modal-footer index-modal-f-b">
+                            <center><i>Announcements posted as of @currentTime</i></center>
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -80,6 +205,7 @@
                 {
                     var station = stationList.ElementAt(i);
                     var stationName = "statusModal" + station.idName;
+
                     var north = StationUpdate.DisplayUpdate(station.stationName, "CV", "north");
                     var south = StationUpdate.DisplayUpdate(station.stationName, "CV", "south");
 
@@ -87,17 +213,18 @@
                     var northColor = "";
                     if (north.CodeName == "Heavy")
                     {
-                        northCV = "H";
+                        northCV = "Waiting Time: 20-25 mins.";
                         northColor = "#c0392b";
                     }
                     else if (north.CodeName == "Moderate")
                     {
-                        northCV = "M";
+                        northCV = "Waiting Time: 10-15 mins.";
                         northColor = "#f39c12";
-                    } else if(north.CodeName == "Light")
+                    }
+                    else if (north.CodeName == "Light")
                     {
-                        northCV = "L";
-                        northColor = "00ff90";
+                        northCV = "Waiting Time: 0-5 mins.";
+                        northColor = "#2ecc71";
                     }
 
 
@@ -105,37 +232,88 @@
                     var southColor = "";
                     if (south.CodeName == "Heavy")
                     {
-                        southCV = "H";
+                        southCV = "Waiting Time: 20-25 mins.";
                         southColor = "#c0392b";
                     }
                     else if (south.CodeName == "Moderate")
                     {
-                        southCV = "M";
+                        southCV = "Waiting Time: 10-15 mins.";
                         southColor = "#f39c12";
                     }
-                    else
+                    else if (south.CodeName == "Light")
                     {
-                        southCV = "L";
-                        southColor = "#00ff90";
+                        southCV = "Waiting Time: 0-5 mins.";
+                        southColor = "#2ecc71";
                     }
-                    var mapColor = "-23px " + StationUpdate.DisplayStatus(north.CodeName, south.CodeName);
-                    <a href="#@stationName" class="status" style="top: @station.top; left: @station.left; background-position: @mapColor;"></a>
+                    
+                    <!--BG POSITION-->
+                    <a href="#@stationName" class="status" data-toggle="modal" style="top: @station.top; left: @station.left; background-position: -23px -1px;"></a>
 
-                    <div id="@stationName" class="mainModalDiv">
-                        <div class="statusModalDiv">
-                            <center>
-                                <a href="#close" title="Close" class="close">X</a>
-                                <h3 style="border:medium solid; border-radius: 6px;">@station.stationName</h3>
-                                <div class="innerDiv">
-                                   
-                                    <div class="innerDiv2" style="background-color:@southColor; color:#FFF">Southbound: @southCV</div>
-                                    <div class="innerDiv2" style="background-color:@northColor; color:#FFF">Northbound: @northCV</div>
-                                    <br>
-                                    <br>
-                             
-                                    <p>As of @currentTime</p>
+                    <!-- THE MODAL FOR THE STATUS OF THE LRT1 STATIONS--> 
+                    <div class="modal fade" id="@stationName" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        
+                        <!-- THE MAIN MODAL DIV -->
+                        <div class="modal-dialog">
+
+                            <!-- THE CONTENTS OF THE MODAL -->
+                            <div class="modal-content">
+
+                                <!-- THE HEADER OF THE MODAL -->
+                                <div class="modal-header index-modal-f-b">
+                                    <button type="button" class="btn btn-danger pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <center><h5 class="modal-title" id="myModalLabel">@station.stationName.ToUpper() STATION</h5></center>
                                 </div>
+
+                                <!-- THE BODY OF THE MODAL -->
+                                <div class="modal-body index-modal-body">
+                                    <div class="row">
+
+                                        <!--  THE DIV FOR THE NORTHBOUND INFO-->
+                                        <div class="col-lg-6">
+                                            <div class="tile" style="background-color:@northColor; color:#FFF">
+                                                <br />
+                                                <img src="images/up_circular-64.png" /><br />
+                                                <h6>Northbound</h6>
+                                                <p>@northCV</p>
+                                            </div>
+                                        </div>
+
+                                        <!-- THE DIV FOR THE SOUTHBOUND INFO -->
+                                        <div class="col-lg-6">
+                                            <div class="tile" style="background-color:@southColor; color:#FFF">
+                                                <br />
+                                                <img src="images/down_circular-64.png" /><br />
+                                                <h6>Southbound</h6>
+                                                <p>@southCV</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <br />
+
+                                    <!-- THE DIV FOR THE ANNOUNCEMENTS INSIDE THE MODAL -->
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="tile index-modal-announcements">
+                                                <h6>Announcements:</h6>
+                                                <p>There is a heavy crowd volume going southbound because a passenger committed suicide in the station.<br />
+                                                    There is a heavy crowd volume going southbound because a passenger committed suicide in the station.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- THE FOOTER OF THE MODAL -->
+                                <div class="modal-footer index-modal-f-b">
+                                    <center><i>Station Crowd Volume as of @currentTime</i></center>
+                                </div>
+
+                            </div>
+
                         </div>
+
                     </div>
                 }
             }
