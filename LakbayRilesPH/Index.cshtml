@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 
 @using LakbayRilesPH;
-@using LakbayRilesPH.Controller;
+@using LakbayRilesPH.ClassFiles;
 
 @{
     var currentTime = DateTime.Now;
@@ -205,6 +205,47 @@
                 {
                     var station = stationList.ElementAt(i);
                     var stationName = "statusModal" + station.idName;
+
+                    var north = StationUpdate.DisplayUpdate(station.stationName, "CV", "north");
+                    var south = StationUpdate.DisplayUpdate(station.stationName, "CV", "south");
+
+                    var northCV = "";
+                    var northColor = "";
+                    if (north.CodeName == "Heavy")
+                    {
+                        northCV = "Waiting Time: 20-25 mins.";
+                        northColor = "#c0392b";
+                    }
+                    else if (north.CodeName == "Moderate")
+                    {
+                        northCV = "Waiting Time: 10-15 mins.";
+                        northColor = "#f39c12";
+                    }
+                    else if (north.CodeName == "Light")
+                    {
+                        northCV = "Waiting Time: 0-5 mins.";
+                        northColor = "#2ecc71";
+                    }
+
+
+                    var southCV = "";
+                    var southColor = "";
+                    if (south.CodeName == "Heavy")
+                    {
+                        southCV = "Waiting Time: 20-25 mins.";
+                        southColor = "#c0392b";
+                    }
+                    else if (south.CodeName == "Moderate")
+                    {
+                        southCV = "Waiting Time: 10-15 mins.";
+                        southColor = "#f39c12";
+                    }
+                    else if (south.CodeName == "Light")
+                    {
+                        southCV = "Waiting Time: 0-5 mins.";
+                        southColor = "#2ecc71";
+                    }
+                    
                     <!--BG POSITION-->
                     <a href="#@stationName" class="status" data-toggle="modal" style="top: @station.top; left: @station.left; background-position: -23px -1px;"></a>
 
@@ -220,7 +261,7 @@
                                 <!-- THE HEADER OF THE MODAL -->
                                 <div class="modal-header index-modal-f-b">
                                     <button type="button" class="btn btn-danger pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <center><h5 class="modal-title" id="myModalLabel">@station.stationName STATION</h5></center>
+                                    <center><h5 class="modal-title" id="myModalLabel">@station.stationName.ToUpper() STATION</h5></center>
                                 </div>
 
                                 <!-- THE BODY OF THE MODAL -->
@@ -229,21 +270,21 @@
 
                                         <!--  THE DIV FOR THE NORTHBOUND INFO-->
                                         <div class="col-lg-6">
-                                            <div class="tile" style="background-color:#f39c12; color:#FFF">
+                                            <div class="tile" style="background-color:@northColor; color:#FFF">
                                                 <br />
-                                                <img src="images/up_circular-64.png" style="fill:#fff"/><br />
+                                                <img src="images/up_circular-64.png" /><br />
                                                 <h6>Northbound</h6>
-                                                <p>Waiting Time: 10-15 mins.</p>
+                                                <p>@northCV</p>
                                             </div>
                                         </div>
 
                                         <!-- THE DIV FOR THE SOUTHBOUND INFO -->
                                         <div class="col-lg-6">
-                                            <div class="tile" style="background-color:#c0392b; color:#FFF">
+                                            <div class="tile" style="background-color:@southColor; color:#FFF">
                                                 <br />
                                                 <img src="images/down_circular-64.png" /><br />
                                                 <h6>Southbound</h6>
-                                                <p>Waiting Time: 15-20 mins.</p>
+                                                <p>@southCV</p>
                                             </div>
                                         </div>
 
