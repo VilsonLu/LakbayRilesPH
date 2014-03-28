@@ -168,6 +168,7 @@
     <Content Include="fonts\Content\bootstrap-theme.css.map" />
     <Content Include="fonts\Content\bootstrap.css.map" />
     <Content Include="Index.cshtml" />
+    <Content Include="View\Admin.html" />
     <Content Include="View\HomeAdmin.cshtml" />
     <None Include="Properties\PublishProfiles\lakbayrilesph.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
