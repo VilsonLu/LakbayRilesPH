@@ -247,7 +247,8 @@
                     }
                     
                     <!--BG POSITION-->
-                    <a href="#@stationName" class="status" data-toggle="modal" style="top: @station.top; left: @station.left; background-position: -23px -1px;"></a>
+                    var color = "-23px " + StationUpdate.DisplayStatus(north.CodeName,south.CodeName);
+                    <a href="#@stationName" class="status" data-toggle="modal" style="top: @station.top; left: @station.left; background-position: @color;"></a>
 
                     <!-- THE MODAL FOR THE STATUS OF THE LRT1 STATIONS--> 
                     <div class="modal fade" id="@stationName" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
