@@ -4,9 +4,10 @@
 @using WebMatrix.Data;
 @{
     
+    var currentTime = DateTime.Now;
     var value = false;
     
-    <!-- After the login has been implemented, this will be removed-->
+    <!-- After the login has been implemented, this will be removed -->
     var db = Database.Open("SQLAzureConnection");
     var staff = (Staff) Session["user"];
 
@@ -62,63 +63,131 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title></title>
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
     <script src="~/js/alertStatus.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-static-top">
-        <h1>LakbayRiles</h1>
-        <h2>
-            Train Supervisor: @staff.FirstName @staff.LastName
-        </h2>
-        <h2>
-            Station Assigned: @stationName
-        </h2>
-    </nav>
-    <div>
-        <div id="nbdiv" class="northbound">
-            <h3><em>NORTHBOUND CONTROLS</em></h3>
+    <!-- THE NAVBAR -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 
-            <div>
-                <h4>Crowd Control Toggles:</h4>
-                <form method="post">
-                    <input type="Submit" name="cc-n" class="crowdcontrol" value="Crowd Control: ON" />
-                    <input type="Submit" name="cc-n" class="crowdcontrol" value="Crowd Control: OFF" />
-                </form>
+        <!-- THE LAKBAY RILES LOGO -->
+        <div class="navbar-header index-navbar"><img src="../images/lakbayrileslogo_s.png" /></div>
+
+        <!-- THE TITLE OF THE VIEW -->
+        <h1 class="index-navbar-title navbar-text">STATION SUPERVISOR CONTROL PANEL</h1>
+
+        <!-- THE DATE AND TIME -->
+        <p class="navbar-text navbar-right index-navbar-date">Today is @currentTime</p>
+
+    </nav>
+
+    <div class="col-lg-2"></div>
+
+    <div class="col-lg-8">
+        <br /><br /><br />
+
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="tile well" style="background-color:#2c3e50; color:#ffffff; border-radius:15px; height:280px;">
+                    <center>
+                        <br />
+                        <h5><em>Station Supervisor:</em></h5>
+                        <h6>@staff.FirstName @staff.LastName</h6>
+
+                        <h5><em>Station Name:</em></h5>
+                        <h6>@stationName.toUpper()</h6>
+                    </center>
+                </div>
+
             </div>
 
-            <div>
-                <h4>Crowd Volume Toggles:</h4>
-                <form method="post">
-                    <input type="Submit" name="cv-n" class="crowdvolume" id="red" value="Heavy" />
-                    <input type="Submit" name="cv-n" class="crowdvolume" id="yellow" value="Moderate" />
-                    <input type="Submit" name="cv-n" class="crowdvolume" id="green" value="Light" />
-                </form>
+            <div class="col-lg-7">
+                <div class="tile well" style="border-radius:15px; background-color:#ffffff; height:280px;">
+                    <center>
+                        <h5><em>Announcements</em></h5>
+
+                        <div class="form-group">
+                            <input type="text" placeholder="Write the Title of the Announcement" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" placeholder="Write more details about the Announcement" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <input type="Submit" name="post" class="btn btn-block btn-inverse" id="postAnnouncement" value="Post Announcement" />
+                        </div>
+                    </center>
+                </div>
             </div>
         </div>
 
-        <br />
 
-        <div id="sbdiv" class="southbound">
-            <h3><em>SOUTHBOUND CONTROLS</em></h3>
 
-            <div>
-                <h4>Crowd Control Toggles:</h4>
-                <form method="post">
-                    <input type="Submit" name="cc-s" class="crowdcontrol" value="Crowd Control: ON" />
-                    <input type="Submit" name="cc-s" class="crowdcontrol" value="Crowd Control: OFF" />
-                </form>
-            </div>
+        <div class="well" style="border-radius:15px; background-color:#ffffff;">
+            <div class="row">
+                <div class="col-lg-6">
+                    <center>
+                        <h5><em>Northbound Controls</em></h5>
 
-            <div>
-                <h4>Crowd Volume Toggles:</h4>
-                <form method="post">
-                    <input type="Submit" name="cv-s" class="crowdvolume" id="red" value="Heavy" />
-                    <input type="Submit" name="cv-s" class="crowdvolume" id="yellow" value="Moderate" />
-                    <input type="Submit" name="cv-s" class="crowdvolume" id="green" value="Light" />
-                </form>
+                        <div style="border:solid; border-color:#bdc3c7; border-radius:10px; padding:10px; border-width:1px;">
+                            <h6>Crowd Control Toggles:</h6>
+                            <form method="post">
+                                <input type="Submit" name="cc-n" class="crowdcontrol btn btn-block btn-success" value="Crowd Control: ON" />
+                                <input type="Submit" name="cc-n" class="crowdcontrol btn btn-block btn-danger" value="Crowd Control: OFF" />
+                            </form>
+                        </div>
+                        <br />
+                        <div style="border:solid; border-color:#bdc3c7; border-radius:10px; padding:10px; border-width:1px;">
+                            <h6>Crowd Volume Toggles:</h6>
+                            <form method="post">
+                                <input type="Submit" name="cv-n" class="crowdvolume btn btn-block btn-danger" id="red" value="Heavy" />
+                                <input type="Submit" name="cv-n" class="crowdvolume btn btn-block btn-warning" id="yellow" value="Moderate" />
+                                <input type="Submit" name="cv-n" class="crowdvolume btn btn-block btn-success" id="green" value="Light" />
+                            </form>
+                        </div>
+                    </center>
+                </div>
+
+                <div class="col-lg-6">
+                    <center>
+                        <h5><em>Southbound Controls</em></h5>
+
+                        <div style="border:solid; border-color:#bdc3c7; border-radius:10px; padding:10px; border-width:1px;">
+                            <h6>Crowd Control Toggles:</h6>
+                            <form method="post">
+                                <input type="Submit" name="cc-s" class="crowdcontrol btn btn-block btn-success" value="Crowd Control: ON" />
+                                <input type="Submit" name="cc-s" class="crowdcontrol btn btn-block btn-danger" value="Crowd Control: OFF" />
+                            </form>
+                        </div>
+                        <br />
+                        <div style="border:solid; border-color:#bdc3c7; border-radius:10px; padding:10px; border-width:1px;">
+                            <h6>Crowd Volume Toggles:</h6>
+                            <form method="post">
+                                <input type="Submit" name="cv-s" class="crowdvolume btn btn-block btn-danger" id="red" value="Heavy" />
+                                <input type="Submit" name="cv-s" class="crowdvolume btn btn-block btn-warning" id="yellow" value="Moderate" />
+                                <input type="Submit" name="cv-s" class="crowdvolume btn btn-block btn-success" id="green" value="Light" />
+                            </form>
+                        </div>
+                    </center>
+                </div>
             </div>
         </div>
     </div>
+
+    <div class="col-lg-2"></div>
+
+    <script src="../js/jquery-1.8.3.min.js"></script>
+    <script src="../js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="../js/jquery.ui.touch-punch.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap-select.js"></script>
+    <script src="../js/bootstrap-switch.js"></script>
+    <script src="../js/flatui-checkbox.js"></script>
+    <script src="../js/flatui-radio.js"></script>
+    <script src="../js/jquery.tagsinput.js"></script>
+    <script src="../js/jquery.placeholder.js"></script>
+    <script src="../js/alertStatus.js"></script>
+
 </body>
 </html>
