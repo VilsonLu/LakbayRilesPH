@@ -199,6 +199,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassFiles\Admin.cs" />
+    <Compile Include="ClassFiles\Announcement.cs" />
     <Compile Include="ClassFiles\Login.cs" />
     <Compile Include="ClassFiles\StationDetails.cs" />
     <Compile Include="ClassFiles\StationList.cs" />
