@@ -71,5 +71,13 @@
     color:#2ecc71;
 }
 
+@media (max-width: 480px){
+    #navbar-desktop{
+        display:none;
+    }
+    #map-desktop{
+        display:none;
+    }
+}
 
 
