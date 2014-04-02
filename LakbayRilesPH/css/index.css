@@ -24,6 +24,20 @@
      z-index:3;
 }
 
+.index-announcement-board-title {
+    color:#ffffff;
+    background-color:#2c3e50;
+    border-radius:15px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition:.5s;
+}
+
+.index-announcement-board-title:hover {
+    background-color:rgba(255,255,255,0.2);
+}
 .index-announcement-items {
      border-radius:15px; 
      font-weight:600;
@@ -38,6 +52,11 @@
 
 .index-announcement-link {
      color:#f1c40f;
+     -o-transition:.5s;
+     -ms-transition:.5s;
+     -moz-transition:.5s;
+     -webkit-transition:.5s;
+     transition:.5s;
 }
 
 .index-announcement-link:hover {

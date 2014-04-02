@@ -12,5 +12,6 @@ namespace LakbayRilesPH.ClassFiles
         public DateTime Time { get; set; }
         public string CodeName { get; set; }
         public string Direction { get; set; }
+        public List<Announcement> Announcements { get; set; } 
     }
 }
