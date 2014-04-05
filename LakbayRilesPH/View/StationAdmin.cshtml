@@ -23,7 +23,7 @@
         {
             var title = Request["title"];
             var message = Request["message"];
-            Admin.UpdateDatabase(title, message, staff.StationHandle);
+            Admin.UpdateDatabase(title, message, staff.StationHandle, "station");
         }
         
         var ccn = Request.Params["cc-n"];

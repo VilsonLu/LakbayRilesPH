@@ -5,6 +5,7 @@
 
 @{
     var currentTime = DateTime.Now;
+    var lineAnnouncements = AnnouncementList.GetAnnouncements();
 }
 
 <html lang="en">
@@ -57,35 +58,18 @@
                     <!-- THE DIV FOR THE ANNOUNCEMENT ITEMS -->
                     <div class="carousel-inner index-announcement-items">
 
-                        <!-- THE DIV FOR ANNOUNCEMENT 1 -->
-                        <div class="active item tile index-announcement-item">
-                            <a href="#allAnnouncements" data-toggle="modal">
-                                <h4 class="index-announcement-board-title">ANNOUNCEMENTS &raquo;</h4>
-                            </a>
-                            <a href="#theAnnouncement" data-toggle="modal" class="index-announcement-link">
-                                <p>[As of @currentTime] - <i>No train from EDSA to ROOSEVELT. A deranged passenger committed suicide. SEE FULL DETAILS!</i></p>
-                            </a>
-                        </div>
-
-                        <!-- THE DIV FOR ANNOUNCEMENT 2 -->
-                        <div class="item tile index-announcement-item">
-                            <a href="#allAnnouncements" data-toggle="modal">
-                                <h4 class="index-announcement-board-title">ANNOUNCEMENTS &raquo;</h4>
-                            </a>
-                            <a href="#theAnnouncement" data-toggle="modal" class="index-announcement-link">
-                                <p>[As of @currentTime] - <i>No train from EDSA to ROOSEVELT. A deranged passenger committed suicide. SEE FULL DETAILS!</i></p>
-                            </a>
-                        </div>
-
-                        <!-- THE DIV FOR ANNOUNCEMENT 3 -->
-                        <div class="item tile index-announcement-item">
-                            <a href="#allAnnouncements" data-toggle="modal">
-                                <h4 class="index-announcement-board-title">ANNOUNCEMENTS &raquo;</h4>
-                            </a>
-                            <a href="#theAnnouncement" data-toggle="modal" class="index-announcement-link">
-                                <p>[As of @currentTime] - <i>No train from EDSA to ROOSEVELT. A deranged passenger committed suicide. SEE FULL DETAILS!</i></p>
-                            </a>
-                        </div>
+                        @foreach (var row in lineAnnouncements)
+                        {
+                            <!-- THE DIV FOR ANNOUNCEMENT 1 -->
+                            <div class="active item tile index-announcement-item">
+                                <a href="#allAnnouncements" data-toggle="modal">
+                                    <h4 class="index-announcement-board-title">ANNOUNCEMENTS &raquo;</h4>
+                                </a>
+                                <a href="#theAnnouncement" data-toggle="modal" class="index-announcement-link">
+                                    <p>[As of @currentTime] - <i>@row.Title SEE FULL DETAILS!</i></p>
+                                </a>
+                            </div>
+                        }
 
                     </div>
 
@@ -102,6 +86,7 @@
 
             </div>
 
+      
             <!-- THE MODAL FOR THE ANNOUNCEMENT -->
             <div class="modal fade" id="theAnnouncement" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
@@ -159,71 +144,31 @@
 
                             <!-- THE DIV FOR ALL THE ANNOUNCEMENTS -->
                             <div class="panel-group" id="AllAnnouncements">
+                                @for (var i=0; i<lineAnnouncements.Count; i++) {
+                                    var row = (Announcement)lineAnnouncements.ElementAt(i);
+                                    var hrefLink = "announcement" + i;
+                                    var links = "#" + hrefLink;
+                                    <!-- THE DIV FOR ANNOUNCEMENT 1 -->
+                                    <div class="panel panel-default">
 
-                                <!-- THE DIV FOR ANNOUNCEMENT 1 -->
-                                <div class="panel panel-default">
-
-                                    <!-- THE TITLE OF THE ANNOUNCEMENT -->
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title index-all-item">
-                                            <a data-toggle="collapse" data-parent="#AllAnnouncements" href="#announcementOne">
-                                                STORED VALUE TICKETS ARE TEMPORARILY UNAVAILABLE.
-                                            </a>
-                                        </h4>
-                                    </div>
-
-                                    <!-- THE FURTHER DETAILS OF THE ANNOUNCEMENT -->
-                                    <div id="announcementOne" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            Animo La Salle! Go La Salle! Keep the Animo burning! Live Jesus in our hearts! Rektikano!
+                                        <!-- THE TITLE OF THE ANNOUNCEMENT -->
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title index-all-item">
+                                                <a data-toggle="collapse" data-parent="#AllAnnouncements" href= @links>
+                                                    @row.Title | @row.Time
+                                                </a>
+                                            </h4>
                                         </div>
-                                    </div>
 
-                                </div>
-
-                                <!-- THE DIV FOR ANNOUNCEMENT 2 -->
-                                <div class="panel panel-default">
-
-                                    <!-- THE TITLE OF THE ANNOUNCEMENT -->
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title index-all-item">
-                                            <a data-toggle="collapse" data-parent="#AllAnnouncements" href="#announcementTwo">
-                                                ROUTINE MAINTENANCE SCHEDULED ON MARCH 19, 2014.
-                                            </a>
-                                        </h4>
-                                    </div>
-
-                                    <!-- THE FURTHER DETAILS OF THE ANNOUNCEMENT -->
-                                    <div id="announcementTwo" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            Animo La Salle! Go La Salle! Keep the Animo burning! Live Jesus in our hearts! Rektikano!
+                                        <!-- THE FURTHER DETAILS OF THE ANNOUNCEMENT -->
+                                        <div id=@hrefLink class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                @row.Message
+                                            </div>
                                         </div>
+
                                     </div>
-
-                                </div>
-
-                                <!-- THE DIV FOR ANNOUNCEMENT 3 -->
-                                <div class="panel panel-default">
-
-                                    <!-- THE TITLE OF THE ANNOUNCEMENT -->
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title index-all-item">
-                                            <a data-toggle="collapse" data-parent="#AllAnnouncements" href="#announcementThree">
-                                                STORED VALUE TICKETS ARE TEMPORARILY UNAVAILABLE.
-                                            </a>
-                                        </h4>
-                                    </div>
-
-                                    <!-- THE FURTHER DETAILS OF THE ANNOUNCEMENT -->
-                                    <div id="announcementThree" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            Animo La Salle! Go La Salle! Keep the Animo burning! Live Jesus in our hearts! Rektikano!
-                                        </div>
-                                    </div>
-
-                                </div>
-
-
+                                }
                             </div>
 
                         </div>

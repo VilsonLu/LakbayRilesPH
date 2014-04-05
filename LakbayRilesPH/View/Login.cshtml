@@ -19,7 +19,16 @@
             if (user != null)
             {
                 Session["user"] = user; //this is how I passed data from one page to the other
-                Response.Redirect("~/View/HomeAdmin.cshtml");
+                var test = user.LineHandle;
+                var test2 = user.StationHandle;
+                if(user.StationHandle != -1){
+                    Response.Redirect("~/View/StationAdmin.cshtml");
+                }
+                else if (user.LineHandle != -1)
+                {
+                    Response.Redirect("~/View/LineAdmin.cshtml");
+                }
+                    
             }
             else
             {

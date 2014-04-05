@@ -13,15 +13,20 @@ namespace LakbayRilesPH
             return query(button, direction, id);
         }
 
-        public static Boolean UpdateDatabase(string title, string message, int stationID)
+        public static Boolean UpdateDatabase(string title, string message, int stationID, string type)
         {
-            return query(title, message, stationID);
+            return query(title, message, stationID, type);
         }
-
-        private static Boolean query(string title, string message, int stationID)
+        // this is for the crowd volume / announcement
+        private static Boolean query(string title, string message, int stationID, string type)
         {
             var db = Database.Open("SQLAzureConnection");
-            var updateQuery = "INSERT INTO StationAnnouncement(AnnouncementTitle, AnnouncementBody, Station, AnnouncementTime) VALUES(@0, @1, @2, @3)";
+            var updateQuery = "";
+            if (type == "station") { 
+                updateQuery = "INSERT INTO StationAnnouncement(AnnouncementTitle, AnnouncementBody, Station, AnnouncementTime) VALUES(@0, @1, @2, @3)";
+            } else {
+                updateQuery = "INSERT INTO LineAnnouncement(AnnouncementTitle, AnnouncementBody, Line, AnnouncementTime) VALUES(@0, @1, @2, @3)";
+            }
             var time = DateTime.Now;
             var sqlFormattedDate = time.ToString("yyyy-MM-dd HH:mm:ss");
 
@@ -33,7 +38,7 @@ namespace LakbayRilesPH
                 return false;
             
         }
-
+        // this is for the crowd volume / crowd control
         private static Boolean query(int status, string direction, int id)
         {
             var db = Database.Open("SQLAzureConnection");

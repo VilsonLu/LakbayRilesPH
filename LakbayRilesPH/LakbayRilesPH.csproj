@@ -168,7 +168,7 @@
     <Content Include="fonts\Content\bootstrap-theme.css.map" />
     <Content Include="fonts\Content\bootstrap.css.map" />
     <Content Include="Index.cshtml" />
-    <Content Include="View\HomeAdmin.cshtml" />
+    <Content Include="View\StationAdmin.cshtml" />
     <None Include="Properties\PublishProfiles\lakbayrilesph.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -177,6 +177,7 @@
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
     <Content Include="Scripts\jquery-2.1.0.min.map" />
+    <Content Include="View\LineAdmin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -200,6 +201,7 @@
   <ItemGroup>
     <Compile Include="ClassFiles\Admin.cs" />
     <Compile Include="ClassFiles\Announcement.cs" />
+    <Compile Include="ClassFiles\AnnouncementList.cs" />
     <Compile Include="ClassFiles\Login.cs" />
     <Compile Include="ClassFiles\StationDetails.cs" />
     <Compile Include="ClassFiles\StationList.cs" />

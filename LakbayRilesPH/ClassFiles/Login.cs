@@ -12,7 +12,7 @@ namespace LakbayRilesPH.Controller
         public static Staff VerifyCredentials(String username, String password)
         {
             var db = WebMatrix.Data.Database.Open("SQLAzureConnection");
-            var selectQuery = "SELECT StaffID, Username, FirstName, LastName, StationHandle FROM Staff WHERE Username = @0 and Password = @1";
+            var selectQuery = "SELECT StaffID, Username, FirstName, LastName, StationHandle, LineHandle FROM Staff WHERE Username = @0 and Password = @1";
             var result = db.QuerySingle(selectQuery, username, password);
             if (result != null)
             {
@@ -21,7 +21,23 @@ namespace LakbayRilesPH.Controller
                 account.Username = result["Username"];
                 account.FirstName = result["FirstName"];
                 account.LastName = result["LastName"];
-                account.StationHandle = result["StationHandle"];
+                if (result["StationHandle"] != null)
+                {
+                    account.StationHandle = result["StationHandle"];
+                }
+                else
+                {
+                    account.StationHandle = -1;
+                }
+       
+                if (result["LineHandle"] != null)
+                {
+                    account.LineHandle = result["LineHandle"];
+                }
+                else
+                {
+                    account.LineHandle = -1;
+                }
                 return account;
             }
             else
