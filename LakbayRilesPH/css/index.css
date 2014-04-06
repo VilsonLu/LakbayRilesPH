@@ -91,11 +91,21 @@
 }
 
 .sidebar-mobile{
-    height:100%;
-    float:left;
-    width: 40px;
+    /*float:left;*/
+    min-height: 100%;
+    width: 150px;
     overflow: auto;
+    background-color:azure;
     display:none;
+}
+
+.content-mobile{
+    margin-left: 150px;
+    display:none;
+}
+
+.col-lg-8{
+    margin: 20px;
 }
 
 @media (max-width: 480px){
@@ -106,6 +116,9 @@
         display:none;
     }
     .sidebar-mobile{
+        display:block;
+    }
+    .content-mobile{
         display:block;
     }
 }
