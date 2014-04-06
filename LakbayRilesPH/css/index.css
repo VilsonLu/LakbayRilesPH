@@ -90,12 +90,23 @@
     color:#2ecc71;
 }
 
+.sidebar-mobile{
+    height:100%;
+    float:left;
+    width: 40px;
+    overflow: auto;
+    display:none;
+}
+
 @media (max-width: 480px){
     #navbar-desktop{
         display:none;
     }
     #map-desktop{
         display:none;
+    }
+    .sidebar-mobile{
+        display:block;
     }
 }
 
