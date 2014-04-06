@@ -23,7 +23,7 @@ namespace LakbayRilesPH.ClassFiles
                 announcement.Time = row.AnnouncementTime;
                 announcements.Add(announcement);
             }
-
+            db.Close();
             return announcements;
         }
 

@@ -6,6 +6,7 @@
 @{
     var currentTime = DateTime.Now;
     var lineAnnouncements = AnnouncementList.GetAnnouncements();
+    var maxAnnouncements = 3;
 }
 
 <html lang="en">
@@ -61,10 +62,11 @@
                     <!-- THE DIV FOR THE ANNOUNCEMENT ITEMS -->
                     <div class="carousel-inner index-announcement-items">
 
-                            @for (var i=0 ; i<lineAnnouncements.Count; i++)
+                            @for (var i=0 ; i<maxAnnouncements; i++)
                             {
                                 var row = (Announcement) lineAnnouncements.ElementAt(i);
                                 var classname = "";
+                                var announcementLink = "#theAnnouncements" + i;
                                 if(i == 0){
                                     classname = "active item tile index-announcement-item";
                                 } else {
@@ -76,9 +78,9 @@
                                         <h4 class="index-announcement-board-title">ANNOUNCEMENTS &raquo;</h4>
                                     </a>
                                
-                                        <a href="#theAnnouncement" data-toggle="modal" class="index-announcement-link">
-                                            <p>[As of @row.Time] - <i>@row.Title SEE FULL DETAILS!</i></p>
-                                        </a>
+                                    <a href=@announcementLink data-toggle="modal" class="index-announcement-link">
+                                        <p>[As of @row.Time] - <i>@row.Title SEE FULL DETAILS!</i></p>
+                                    </a>
                                 
                                 </div>
                             }
@@ -98,43 +100,46 @@
 
             </div>
 
-      
-            <!-- THE MODAL FOR THE ANNOUNCEMENT -->
-            <div class="modal fade" id="theAnnouncement" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            @for (var i = 0; i < maxAnnouncements; i++) { 
+                var row = (Announcement) lineAnnouncements.ElementAt(i);
+                var links = "theAnnouncements" + i;
+                <!-- THE MODAL FOR THE ANNOUNCEMENT -->
+                <div class="modal fade" id=@links tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
-                <!-- THE MAIN MODAL DIV -->
-                <div class="modal-dialog">
+                    <!-- THE MAIN MODAL DIV -->
+                    <div class="modal-dialog">
 
-                    <!-- THE CONTENTS OF THE MODAL -->
-                    <div class="modal-content">
+                        <!-- THE CONTENTS OF THE MODAL -->
+                        <div class="modal-content">
 
-                        <!-- THE HEADER OF THE MODAL -->
-                        <div class="modal-header index-modal-f-b">
-                            <button type="button" class="btn btn-danger pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <center><h5 class="modal-title" id="myModalLabel">LRT LINE 1 ANNOUNCEMENT</h5></center>
-                        </div>
+                            <!-- THE HEADER OF THE MODAL -->
+                            <div class="modal-header index-modal-f-b">
+                                <button type="button" class="btn btn-danger pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <center><h5 class="modal-title" id="myModalLabel">LRT LINE 1 ANNOUNCEMENT</h5></center>
+                            </div>
 
-                        <!-- THE BODY OF THE MODAL -->
-                        <div class="modal-body index-modal-body">
-                            <center>
-                                <h5><em>NO TRAIN FROM EDSA TO ROOSEVELT.</em></h5>
-                                <br />
-                                <div class="well">
-                                    <p><br />No trains will be operating today because of the brownout.<br /> All power supplies have been cut off.</p>
-                                </div>
-                            </center>
-                        </div>
+                            <!-- THE BODY OF THE MODAL -->
+                            <div class="modal-body index-modal-body">
+                                <center>
+                                    <h5><em>@row.Title</em></h5>
+                                    <br />
+                                    <div class="well">
+                                        <p><br />@row.Message</p>
+                                    </div>
+                                </center>
+                            </div>
 
-                        <!-- THE FOOTER OF THE MODAL -->
-                        <div class="modal-footer index-modal-f-b">
-                            <center><i>Announcement posted as of @currentTime</i></center>
+                            <!-- THE FOOTER OF THE MODAL -->
+                            <div class="modal-footer index-modal-f-b">
+                                <center><i>Announcement posted as of @row.Time</i></center>
+                            </div>
+
                         </div>
 
                     </div>
 
                 </div>
-
-            </div>
+            }
 
             <!-- THE MODAL FOR THE LIST OF ALL ANNOUNCEMENTS -->
             <div class="modal fade" id="allAnnouncements" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

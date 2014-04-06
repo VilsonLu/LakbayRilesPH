@@ -38,10 +38,12 @@ namespace LakbayRilesPH.Controller
                 {
                     account.LineHandle = -1;
                 }
+                db.Close();
                 return account;
             }
             else
             {
+                db.Close();
                 return null;
             }
         }
