@@ -92,20 +92,37 @@
 
 .sidebar-mobile{
     /*float:left;*/
-    min-height: 100%;
-    width: 150px;
+    width: 100%;
     overflow: auto;
-    background-color:azure;
     display:none;
 }
 
 .content-mobile{
-    margin-left: 150px;
+    margin-left: auto;
+    margin-right: auto;
     display:none;
 }
 
 .col-lg-8{
-    margin: 20px;
+    margin: 10px;
+}
+
+#station-info-mobile{
+    border:thin solid;
+    border-radius:5px;
+    border-color:#bdc3c7;
+}
+
+#allStations{
+    display:none;
+}
+
+#navbar-mobile{
+    display:none;
+}
+
+#title-mobile{
+    display:none;
 }
 
 @media (max-width: 480px){
@@ -119,6 +136,15 @@
         display:block;
     }
     .content-mobile{
+        display:block;
+    }
+    #allStations{
+        display:block;
+    }
+    #navbar-mobile{
+        display:block;
+    }
+    #title-mobile{
         display:block;
     }
 }
