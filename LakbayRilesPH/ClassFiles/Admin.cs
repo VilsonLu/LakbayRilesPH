@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LakbayRilesPH.ClassFiles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,27 @@ namespace LakbayRilesPH
 {
     public class Admin
     {
+
+        public static string CurrentTime()
+        {
+            var time = DateTime.Now;
+            var sqlFormattedDate = time.ToString("yyyy-MM-dd HH:mm:ss");
+            return sqlFormattedDate;
+        }
+        public static Boolean UpdateDatabase(LineStatus status)
+        {
+            var db = Database.Open("SQLAzureConnection");
+            var updateQuery = "INSERT INTO LineStatus (Status, StatusTime, Supervisor) VALUES (@0, @1, @2)";
+            var sqlFormattedDate = CurrentTime();
+
+            var flag = db.Execute(updateQuery, status.Status, sqlFormattedDate, status.Supervisor);
+
+            if (flag != 0)
+                return true;
+            else
+                return false;
+
+        }
         public static Boolean UpdateDatabase(int button, string direction, int id)
         {
             return query(button, direction, id);
@@ -27,8 +49,8 @@ namespace LakbayRilesPH
             } else {
                 updateQuery = "INSERT INTO LineAnnouncement(AnnouncementTitle, AnnouncementBody, Line, AnnouncementTime) VALUES(@0, @1, @2, @3)";
             }
-            var time = DateTime.Now;
-            var sqlFormattedDate = time.ToString("yyyy-MM-dd HH:mm:ss");
+
+            var sqlFormattedDate = CurrentTime();
 
             var flag = db.Execute(updateQuery, title, message, stationID, sqlFormattedDate);
 
@@ -43,8 +65,8 @@ namespace LakbayRilesPH
         {
             var db = Database.Open("SQLAzureConnection");
             var updateQuery = "INSERT INTO StationStatus (Status, Supervisor, Direction, StatusTime) VALUES (@0, @1, @2, @3) ";
-            var time = DateTime.Now;
-            var sqlFormattedDate = time.ToString("yyyy-MM-dd HH:mm:ss");
+
+            var sqlFormattedDate = CurrentTime();
    
             var flag = db.Execute(updateQuery, status, id, direction, sqlFormattedDate);
             

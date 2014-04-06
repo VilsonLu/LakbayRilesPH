@@ -6,6 +6,8 @@
 @{
     var currentTime = DateTime.Now;
     var lineAnnouncements = AnnouncementList.GetAnnouncements();
+    var lineCode = LineUpdate.GetLineCode();
+    
     var maxAnnouncements = 3;
 }
 
@@ -24,7 +26,7 @@
 
 </head>
 
-<body>
+<body style=@lineCode>
     <!-- THE NAVBAR DESKTOP-->
     <nav class="navbar navbar-default" role="navigation" id="navbar-desktop">
 
