@@ -57,24 +57,34 @@
                 <!-- THE DIV OF THE CONTENTS ANNOUNCEMENT BOARD -->
                 <div id="announcement" class="carousel slide" data-interval="6000" data-ride="carousel">
 
+                    
                     <!-- THE DIV FOR THE ANNOUNCEMENT ITEMS -->
                     <div class="carousel-inner index-announcement-items">
 
-                        @foreach (var row in lineAnnouncements)
-                        {
-                            <!-- THE DIV FOR ANNOUNCEMENT 1 -->
-                            <div class="active item tile index-announcement-item">
-                                <a href="#allAnnouncements" data-toggle="modal">
-                                    <h4 class="index-announcement-board-title">ANNOUNCEMENTS &raquo;</h4>
-                                </a>
-                                <a href="#theAnnouncement" data-toggle="modal" class="index-announcement-link">
-                                    <p>[As of @currentTime] - <i>@row.Title SEE FULL DETAILS!</i></p>
-                                </a>
-                            </div>
-                        }
+                            @for (var i=0 ; i<lineAnnouncements.Count; i++)
+                            {
+                                var row = (Announcement) lineAnnouncements.ElementAt(i);
+                                var classname = "";
+                                if(i == 0){
+                                    classname = "active item tile index-announcement-item";
+                                } else {
+                                    classname = "item tile index-announcement-item";
+                                }
+                                <!-- THE DIV FOR ANNOUNCEMENT 1 -->
+                                <div class="@classname">
+                                    <a href="#allAnnouncements" data-toggle="modal">
+                                        <h4 class="index-announcement-board-title">ANNOUNCEMENTS &raquo;</h4>
+                                    </a>
+                               
+                                        <a href="#theAnnouncement" data-toggle="modal" class="index-announcement-link">
+                                            <p>[As of @row.Time] - <i>@row.Title SEE FULL DETAILS!</i></p>
+                                        </a>
+                                
+                                </div>
+                            }
 
                     </div>
-
+                   
                     <!-- THE "NAVBAR" FOR THE ANNOUNCEMENT BOARD -->
                     <a class="carousel-control left index-rounded-border" href="#announcement" data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left"></span>
@@ -107,10 +117,10 @@
                         <!-- THE BODY OF THE MODAL -->
                         <div class="modal-body index-modal-body">
                             <center>
-                                <h5><em>NO TRAIN FROM EDSA TO ROOSEVELT. A DERANGED PASSENGER COMMITTED SUICIDE.</em></h5>
+                                <h5><em>NO TRAIN FROM EDSA TO ROOSEVELT.</em></h5>
                                 <br />
                                 <div class="well">
-                                    <p>szgsfgsdfgsdgfsdfgsdfgsdfgsdfgdsfgsdgsd<br />dfsadfasdfasdfasdfasfasdfasfasf<br />dsfgsdfgsdfgsdfgsdfgsdfgsdfgsdg</p>
+                                    <p><br />No trains will be operating today because of the brownout.<br /> All power supplies have been cut off.</p>
                                 </div>
                             </center>
                         </div>
