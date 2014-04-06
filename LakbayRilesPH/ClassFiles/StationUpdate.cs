@@ -8,7 +8,7 @@ namespace LakbayRilesPH.ClassFiles
 {
     public class StationUpdate
     {
-        public static StationStatus DisplayUpdate( string station, string code, string direction)
+        public static StationStatus DisplayUpdate(string station, string code, string direction)
         {
             var db = Database.Open("SQLAzureConnection");
             var query = "SELECT TOP 1 StationID, StationName, StatusTime as Time, CodeName, Direction " +
@@ -17,7 +17,7 @@ namespace LakbayRilesPH.ClassFiles
                         "StationName = @0 and Direction = @1 and CodeType = @2 " +
                         "ORDER BY Time DESC";
 
-            var result = db.QuerySingle(query,station, direction, code);
+            var result = db.QuerySingle(query, station, direction, code);
             StationStatus temp = new StationStatus();
             var x = result["StationName"].Trim();
             temp.StationName = x;
@@ -33,7 +33,8 @@ namespace LakbayRilesPH.ClassFiles
             return temp;
         }
 
-        public static List<Announcement> GetAnnouncements(int stationID) {
+        public static List<Announcement> GetAnnouncements(int stationID)
+        {
             List<Announcement> temp = new List<Announcement>();
             var db = Database.Open("SQLAzureConnection");
             var query = "SELECT TOP 3 AnnouncementTitle, AnnouncementBody, AnnouncementTime FROM StationAnnouncement WHERE Station = @0 ORDER BY AnnouncementTime DESC";

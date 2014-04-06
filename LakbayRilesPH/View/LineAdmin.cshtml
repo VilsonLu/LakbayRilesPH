@@ -14,8 +14,8 @@
         Validator.Required("Please provide details of your announcement"),
         Validator.StringLength(5, 100, "Message must only contain a maximum of 100 characters")
         );
-  
-    
+
+
     var currentTime = DateTime.Now;
 
 
@@ -38,7 +38,7 @@
             Admin.UpdateDatabase(title, message, staff.StationHandle, "station");
         }
 
-      
+
         var lc = Request.Params["lc"];
         var ls = new LineStatus();
         ls.Supervisor = staff.StaffID;
@@ -57,7 +57,7 @@
             ls.Status = 8;
             Admin.UpdateDatabase(ls);
         }
-    
+
     }
 
 }
@@ -131,15 +131,13 @@
             </div>
         </div>
 
-
-
         <div class="well" style="border-radius:15px; background-color:#ffffff;">
             <div class="row">
                 <div class="col-lg-6">
                     <center>
                         <h5><em>@LineName Controls</em></h5>
 
-                    <div style="border:solid; border-color:#bdc3c7; border-radius:10px; padding:10px; border-width:1px;">
+                        <div style="border:solid; border-color:#bdc3c7; border-radius:10px; padding:10px; border-width:1px;">
                             <h6>Line Code Warning:</h6>
                             <form method="post">
                                 <input type="Submit" name="lc" class="crowdvolume btn btn-block btn-danger" id="red" value="Red" />
@@ -150,7 +148,7 @@
                     </center>
                 </div>
 
-            
+
             </div>
         </div>
     </div>

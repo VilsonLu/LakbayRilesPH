@@ -12,10 +12,13 @@ namespace LakbayRilesPH
 
         public static string CurrentTime()
         {
-            var time = DateTime.Now;
+            var utcTime = DateTime.UtcNow;
+            TimeZoneInfo sgtime = TimeZoneInfo.FindSystemTimeZoneById("Singapore Standard Time");
+            var time = TimeZoneInfo.ConvertTimeFromUtc(utcTime, sgtime);
             var sqlFormattedDate = time.ToString("yyyy-MM-dd HH:mm:ss");
             return sqlFormattedDate;
         }
+
         public static Boolean UpdateDatabase(LineStatus status)
         {
             var db = Database.Open("SQLAzureConnection");
