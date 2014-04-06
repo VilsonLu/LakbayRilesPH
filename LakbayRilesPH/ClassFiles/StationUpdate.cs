@@ -29,6 +29,7 @@ namespace LakbayRilesPH.ClassFiles
             temp.StationID = result["StationID"];
             temp.Time = result["Time"];
             temp.Announcements = GetAnnouncements(result["StationID"]);
+            db.Close();
             return temp;
         }
 
@@ -46,7 +47,7 @@ namespace LakbayRilesPH.ClassFiles
                 announcement.Time = row.AnnouncementTime;
                 temp.Add(announcement);
             }
-
+            db.Close();
             return temp;
         }
         public static string DisplayStatus(string north, string south)

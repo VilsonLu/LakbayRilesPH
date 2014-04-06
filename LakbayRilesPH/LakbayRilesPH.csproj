@@ -169,6 +169,7 @@
     <Content Include="fonts\Content\bootstrap.css.map" />
     <Content Include="Index.cshtml" />
     <Content Include="View\StationAdmin.cshtml" />
+    <Content Include="Login.cshtml" />
     <None Include="Properties\PublishProfiles\lakbayrilesph.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -193,7 +194,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\view.js" />
-    <None Include="View\Login.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -202,6 +202,8 @@
     <Compile Include="ClassFiles\Admin.cs" />
     <Compile Include="ClassFiles\Announcement.cs" />
     <Compile Include="ClassFiles\AnnouncementList.cs" />
+    <Compile Include="ClassFiles\LineStatus.cs" />
+    <Compile Include="ClassFiles\LineUpdate.cs" />
     <Compile Include="ClassFiles\Login.cs" />
     <Compile Include="ClassFiles\StationDetails.cs" />
     <Compile Include="ClassFiles\StationList.cs" />
