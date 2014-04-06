@@ -6,9 +6,75 @@
 @{
     var currentTime = DateTime.Now;
     var lineAnnouncements = AnnouncementList.GetAnnouncements();
+    var stationList = StationList.createStations();
+    var listStationStatus = new List<StationDetails>();
+    StationStatus north = null;
+    StationStatus south = null;
+    for (int i = 0; i < stationList.Count; i++)
+    {
+        var station = stationList.ElementAt(i);
+        var details = new StationDetails();
+        north = StationUpdate.DisplayUpdate(station.stationName, "CV", "north");
+        south = StationUpdate.DisplayUpdate(station.stationName, "CV", "south");
+
+        var northCV = "";
+        var northColor = "";
+        if (north.CodeName == "Heavy")
+        {
+            northCV = "Waiting Time: 20-25 mins.";
+            northColor = "#c0392b";
+            details.NorthCV = northCV;
+            details.NorthColor = northColor;
+        }
+        else if (north.CodeName == "Moderate")
+        {
+            northCV = "Waiting Time: 10-15 mins.";
+            northColor = "#f39c12";
+            details.NorthCV = northCV;
+            details.NorthColor = northColor;
+        }
+        else if (north.CodeName == "Light")
+        {
+            northCV = "Waiting Time: 0-5 mins.";
+            northColor = "#2ecc71";
+            details.NorthCV = northCV;
+            details.NorthColor = northColor;
+        }
+
+
+        var southCV = "";
+        var southColor = "";
+        if (south.CodeName == "Heavy")
+        {
+            southCV = "Waiting Time: 20-25 mins.";
+            southColor = "#c0392b";
+            details.SouthCV = southCV;
+            details.SouthColor = southColor;
+        }
+        else if (south.CodeName == "Moderate")
+        {
+            southCV = "Waiting Time: 10-15 mins.";
+            southColor = "#f39c12";
+            details.SouthCV = southCV;
+            details.SouthColor = southColor;
+        }
+        else if (south.CodeName == "Light")
+        {
+            southCV = "Waiting Time: 0-5 mins.";
+            southColor = "#2ecc71";
+            details.SouthCV = southCV;
+            details.SouthColor = southColor;
+        }
+        details.NorthCode = north.CodeName;
+        details.SouthCode = south.CodeName;
+        details.NorthTime = north.Time;
+        details.SouthTime = south.Time;
+        details.StationAnnouncement = south.Announcements;
+        listStationStatus.Add(details);
+    }
     var lineCode = LineUpdate.GetLineCode();
-    
-   var maxAnnouncements = 3;
+
+    var maxAnnouncements = 3;
 }
 
 <html lang="en">
@@ -40,9 +106,8 @@
         <p class="navbar-text navbar-right index-navbar-date">Today is @currentTime</p>
 
     </nav>
-    
-    <!-- THE MOBILE OF LAKBAYRILES.PH -->
 
+    <!-- THE MOBILE OF LAKBAYRILES.PH -->
     <!-- THE NAVBAR MOBILE -->
     <nav class="navbar navbar-default" role="navigation" id="navbar-mobile">
 
@@ -53,45 +118,58 @@
         <center><h6 class="index-navbar-title navbar-text">LRT LINE 1 SYSTEM VIEW</h6></center>
 
     </nav>
+
+    <!-- MOBILE VERSION-->
     <div id="title-mobile">
         <center><h3>STATIONS</h3></center>
     </div>
     <div class="panel-group" id="allStations">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <center>
-                    <h2 class="panel-title index-all-item">
-                        <a data-toggle="collapse" data-parent="#allStations" href="#hello">Carriedo</a>
-                    </h2>
-                </center>
-            </div>
-        </div>
 
-        <div id="hello" class="panel-collapse collapse">
-            <div class="panel-body" id="station-info-mobile">
-                <div class="row">
 
-                    <!--  THE DIV FOR THE NORTHBOUND INFO-->
-                    <div class="col-lg-8">
-                        <div class="tile" style="background-color:#2ecc71; color:#FFF">
-                            <br />
-                            <img src="images/up_circular-64.png" /><br />
-                            <h6>Northbound</h6>
-                        </div>
-                    </div>
-
-                    <!-- THE DIV FOR THE SOUTHBOUND INFO -->
-                    <div class="col-lg-8">
-                        <div class="tile" style="background-color:#2ecc71; color:#FFF">
-                            <br />
-                            <img src="images/down_circular-64.png" /><br />
-                            <h6>Southbound</h6>
-                        </div>
-                    </div>
-
+        @for (var i = 0; i < stationList.Count; i++)
+        {
+            var mobileStation = stationList.ElementAt(i);
+            var mobileName = "station" + mobileStation.idName;
+            var details = listStationStatus.ElementAt(i);
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <center>
+                        <h2 class="panel-title index-all-item">
+                            <a data-toggle="collapse" data-parent="#allStations" href="#@mobileName">@mobileStation.stationName</a>
+                        </h2>
+                    </center>
                 </div>
             </div>
-        </div>
+
+            <div id="@mobileName" class="panel-collapse collapse">
+                <div class="panel-body" id="station-info-mobile">
+                    <div class="row">
+
+                        <!--  THE DIV FOR THE NORTHBOUND INFO-->
+                        <div class="col-lg-8">
+                            <div class="tile" style="background-color:@details.NorthColor; color:#FFF">
+                                <br />
+                                <img src="images/up_circular-64.png" /><br />
+                                <h5>Northbound</h5>
+                                <h6>@details.NorthCV</h6>
+                            </div>
+                        </div>
+
+                        <!-- THE DIV FOR THE SOUTHBOUND INFO -->
+                        <div class="col-lg-8">
+                            <div class="tile" style="background-color:@details.SouthColor; color:#FFF">
+                                <br />
+                                <img src="images/down_circular-64.png" /><br />
+                                <h5>Southbound</h5>
+                                <h6>@details.SouthCV</h6>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        }
     </div>
 
     <!-- THE MAIN BODY OF LAKBAYRILES.PH -->
@@ -111,35 +189,38 @@
                 <!-- THE DIV OF THE CONTENTS ANNOUNCEMENT BOARD -->
                 <div id="announcement" class="carousel slide" data-interval="6000" data-ride="carousel">
 
-                    
+
                     <!-- THE DIV FOR THE ANNOUNCEMENT ITEMS -->
                     <div class="carousel-inner index-announcement-items">
 
-                            @for (var i=0 ; i<maxAnnouncements; i++)
+                        @for (var i = 0; i < maxAnnouncements; i++)
+                        {
+                            var row = (Announcement)lineAnnouncements.ElementAt(i);
+                            var classname = "";
+                            var announcementLink = "#theAnnouncements" + i;
+                            if (i == 0)
                             {
-                                var row = (Announcement) lineAnnouncements.ElementAt(i);
-                                var classname = "";
-                                var announcementLink = "#theAnnouncements" + i;
-                                if(i == 0){
-                                    classname = "active item tile index-announcement-item";
-                                } else {
-                                    classname = "item tile index-announcement-item";
-                                }
-                                <!-- THE DIV FOR ANNOUNCEMENT 1 -->
-                                <div class="@classname">
-                                    <a href="#allAnnouncements" data-toggle="modal">
-                                        <h4 class="index-announcement-board-title">ANNOUNCEMENTS &raquo;</h4>
-                                    </a>
-                               
-                                    <a href=@announcementLink data-toggle="modal" class="index-announcement-link">
-                                        <p>[As of @row.Time] - <i>@row.Title SEE FULL DETAILS!</i></p>
-                                    </a>
-                                
-                                </div>
+                                classname = "active item tile index-announcement-item";
                             }
+                            else
+                            {
+                                classname = "item tile index-announcement-item";
+                            }
+                                <!-- THE DIV FOR ANNOUNCEMENT 1 -->
+                            <div class="@classname">
+                                <a href="#allAnnouncements" data-toggle="modal">
+                                    <h4 class="index-announcement-board-title">ANNOUNCEMENTS &raquo;</h4>
+                                </a>
+
+                                <a href=@announcementLink data-toggle="modal" class="index-announcement-link">
+                                    <p>[As of @row.Time] - <i>@row.Title SEE FULL DETAILS!</i></p>
+                                </a>
+
+                            </div>
+                        }
 
                     </div>
-                   
+
                     <!-- THE "NAVBAR" FOR THE ANNOUNCEMENT BOARD -->
                     <a class="carousel-control left index-rounded-border" href="#announcement" data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left"></span>
@@ -153,8 +234,9 @@
 
             </div>
 
-            @for (var i = 0; i < maxAnnouncements; i++) { 
-                var row = (Announcement) lineAnnouncements.ElementAt(i);
+            @for (var i = 0; i < maxAnnouncements; i++)
+            {
+                var row = (Announcement)lineAnnouncements.ElementAt(i);
                 var links = "theAnnouncements" + i;
                 <!-- THE MODAL FOR THE ANNOUNCEMENT -->
                 <div class="modal fade" id=@links tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -214,7 +296,8 @@
 
                             <!-- THE DIV FOR ALL THE ANNOUNCEMENTS -->
                             <div class="panel-group" id="AllAnnouncements">
-                                @for (var i=0; i<lineAnnouncements.Count; i++) {
+                                @for (var i = 0; i < lineAnnouncements.Count; i++)
+                                {
                                     var row = (Announcement)lineAnnouncements.ElementAt(i);
                                     var hrefLink = "announcement" + i;
                                     var links = "#" + hrefLink;
@@ -224,7 +307,7 @@
                                         <!-- THE TITLE OF THE ANNOUNCEMENT -->
                                         <div class="panel-heading">
                                             <h4 class="panel-title index-all-item">
-                                                <a data-toggle="collapse" data-parent="#AllAnnouncements" href= @links>
+                                                <a data-toggle="collapse" data-parent="#AllAnnouncements" href=@links>
                                                     @row.Title | @row.Time
                                                 </a>
                                             </h4>
@@ -255,55 +338,14 @@
             </div>
 
             @{
-                var stationList = StationList.createStations();
 
-                for (int i = 0; i < stationList.Count; i++)
+                for (var i = 0; i < stationList.Count; i++)
                 {
                     var station = stationList.ElementAt(i);
                     var stationName = "statusModal" + station.idName;
-
-                    var north = StationUpdate.DisplayUpdate(station.stationName, "CV", "north");
-                    var south = StationUpdate.DisplayUpdate(station.stationName, "CV", "south");
-
-                    var northCV = "";
-                    var northColor = "";
-                    if (north.CodeName == "Heavy")
-                    {
-                        northCV = "Waiting Time: 20-25 mins.";
-                        northColor = "#c0392b";
-                    }
-                    else if (north.CodeName == "Moderate")
-                    {
-                        northCV = "Waiting Time: 10-15 mins.";
-                        northColor = "#f39c12";
-                    }
-                    else if (north.CodeName == "Light")
-                    {
-                        northCV = "Waiting Time: 0-5 mins.";
-                        northColor = "#2ecc71";
-                    }
-
-
-                    var southCV = "";
-                    var southColor = "";
-                    if (south.CodeName == "Heavy")
-                    {
-                        southCV = "Waiting Time: 20-25 mins.";
-                        southColor = "#c0392b";
-                    }
-                    else if (south.CodeName == "Moderate")
-                    {
-                        southCV = "Waiting Time: 10-15 mins.";
-                        southColor = "#f39c12";
-                    }
-                    else if (south.CodeName == "Light")
-                    {
-                        southCV = "Waiting Time: 0-5 mins.";
-                        southColor = "#2ecc71";
-                    }
-
+                    var details = listStationStatus.ElementAt(i);
                     <!--BG POSITION-->
-                    var color = "-23px " + StationUpdate.DisplayStatus(north.CodeName, south.CodeName);
+                    var color = "-23px " + StationUpdate.DisplayStatus(details.NorthCode, details.SouthCode);
                     <a href="#@stationName" class="status" data-toggle="modal" style="top: @station.top; left: @station.left; background-position: @color;"></a>
 
                     <!-- THE MODAL FOR THE STATUS OF THE LRT1 STATIONS-->
@@ -327,21 +369,21 @@
 
                                         <!--  THE DIV FOR THE NORTHBOUND INFO-->
                                         <div class="col-lg-6">
-                                            <div class="tile" style="background-color:@northColor; color:#FFF">
+                                            <div class="tile" style="background-color:@details.NorthColor; color:#FFF">
                                                 <br />
                                                 <img src="images/up_circular-64.png" /><br />
                                                 <h6>Northbound</h6>
-                                                <p>@northCV</p>
+                                                <p>@details.NorthCV</p>
                                             </div>
                                         </div>
 
                                         <!-- THE DIV FOR THE SOUTHBOUND INFO -->
                                         <div class="col-lg-6">
-                                            <div class="tile" style="background-color:@southColor; color:#FFF">
+                                            <div class="tile" style="background-color:@details.SouthColor; color:#FFF">
                                                 <br />
                                                 <img src="images/down_circular-64.png" /><br />
                                                 <h6>Southbound</h6>
-                                                <p>@southCV</p>
+                                                <p>@details.SouthCV</p>
                                             </div>
                                         </div>
 
@@ -355,20 +397,21 @@
                                             <div class="tile index-modal-announcements">
                                                 <h6>Announcements:</h6>
                                                 @{
-                                                    var announcements = north.Announcements;
-                                                    if (announcements.Count > 0) { 
-                                                        foreach (var announcement in announcements)
-                                                        {
-                                                            <p class="title"> @announcement.Title | @announcement.Time </p>
-                                                            <p class="message">@announcement.Message</p>
-                                                        }
-                                                    }
-                                                    else
-                                                    {
-                                                        <p class="message">No announcements</p>
-                                                    }
+                    var announcements = details.StationAnnouncement;
+                    if (announcements.Count > 0)
+                    {
+                        foreach (var announcement in announcements)
+                        {
+                            <p class="title"> @announcement.Title | @announcement.Time </p>
+                                                    <p class="message">@announcement.Message</p>
+                        }
+                    }
+                    else
+                    {
+                        <p class="message">No announcements</p>
+                    }
                                                 }
-                                              
+
                                             </div>
                                         </div>
                                     </div>
@@ -377,7 +420,19 @@
 
                                 <!-- THE FOOTER OF THE MODAL -->
                                 <div class="modal-footer index-modal-f-b">
-                                    <center><i>Station Crowd Volume as of @currentTime</i></center>
+
+                                    @{
+                    var time = "";
+                    if (details.NorthTime > details.SouthTime)
+                    {
+                        time = details.NorthTime.ToString();
+                    }
+                    else
+                    {
+                        time = details.SouthTime.ToString();
+                    }
+                                    }
+                                    <center><i>Station Crowd Volume as of @time</i></center>
                                 </div>
 
                             </div>
@@ -389,7 +444,9 @@
             }
         </div>
     </div>
-    
+
+
+
     <script src="~/js/jquery-1.8.3.min.js"></script>
     <script src="~/js/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="~/js/jquery.ui.touch-punch.min.js"></script>

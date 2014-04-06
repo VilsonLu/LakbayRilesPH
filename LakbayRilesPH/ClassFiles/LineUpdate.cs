@@ -23,11 +23,10 @@ namespace LakbayRilesPH.ClassFiles
             {
                 lineCode = "background-color:#f39c12";
             }
-            else if (lineCode == "Green")
+            else
             {
-                lineCode = "background-color:#2ecc71";
+                return "";
             }
-
             return lineCode;
         }
     }
