@@ -37,9 +37,60 @@
         <p class="navbar-text navbar-right index-navbar-date">Today is @currentTime</p>
 
     </nav>
-    <div class="sidebar-mobile" id="boxscroll">
-        <button type="button">Station1</button>
+    
+    <!-- THE MOBILE OF LAKBAYRILES.PH -->
+
+    <!-- THE NAVBAR MOBILE -->
+    <nav class="navbar navbar-default" role="navigation" id="navbar-mobile">
+
+        <!-- THE LAKBAY RILES LOGO -->
+        <div class="navbar-header index-navbar"><center><img src="~/images/lakbayrileslogo_s.png"></center></div>
+
+        <!-- THE TITLE OF THE VIEW -->
+        <center><h6 class="index-navbar-title navbar-text">LRT LINE 1 SYSTEM VIEW</h6></center>
+
+    </nav>
+    <div id="title-mobile">
+        <center><h3>STATIONS</h3></center>
     </div>
+    <div class="panel-group" id="allStations">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <center>
+                    <h2 class="panel-title index-all-item">
+                        <a data-toggle="collapse" data-parent="#allStations" href="#hello">Carriedo</a>
+                    </h2>
+                </center>
+            </div>
+        </div>
+
+        <div id="hello" class="panel-collapse collapse">
+            <div class="panel-body" id="station-info-mobile">
+                <div class="row">
+
+                    <!--  THE DIV FOR THE NORTHBOUND INFO-->
+                    <div class="col-lg-8">
+                        <div class="tile" style="background-color:#2ecc71; color:#FFF">
+                            <br />
+                            <img src="images/up_circular-64.png" /><br />
+                            <h6>Northbound</h6>
+                        </div>
+                    </div>
+
+                    <!-- THE DIV FOR THE SOUTHBOUND INFO -->
+                    <div class="col-lg-8">
+                        <div class="tile" style="background-color:#2ecc71; color:#FFF">
+                            <br />
+                            <img src="images/down_circular-64.png" /><br />
+                            <h6>Southbound</h6>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- THE MAIN BODY OF LAKBAYRILES.PH -->
     <div class="container index-body">
 
@@ -330,34 +381,9 @@
                 }
             }
         </div>
-
-        <div class="content-mobile">
-            <center><h5 class="modal-title" id="myModalLabel">CARRIEDO</h5></center>
-            <!--  THE DIV FOR THE NORTHBOUND INFO-->
-            <div class="col-lg-8">
-                <div class="tile" style="background-color:#2ecc71; color:#FFF">
-                    <br/>
-                    <img src="images/up_circular-64.png" /><br />
-                    <h6>Northbound</h6>
-                </div>
-            </div>
-
-            <!-- THE DIV FOR THE SOUTHBOUND INFO -->
-            <div class="col-lg-8">
-                <div class="tile" style="background-color:#2ecc71; color:#FFF">
-                    <br />
-                    <img src="images/down_circular-64.png" /><br />
-                    <h6>Southbound</h6>
-                </div>
-            </div>
-        </div>
     </div>
-    <script>
-        $("#boxscroll").niceScroll({ touchbehavior: false, cursorcolor: "#00F", cursoropacitymax: 0.7, cursorwidth: 11, cursorborder: "1px solid #2848BE", cursorborderradius: "8px", background: "#ccc", autohidemode: "scroll" }).cursor.css({ "background-image": "url(img/mac6scroll.png)" });
-    </script>
+    
     <script src="~/js/jquery-1.8.3.min.js"></script>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.nicescroll.min.js"></script>
     <script src="~/js/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="~/js/jquery.ui.touch-punch.min.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
